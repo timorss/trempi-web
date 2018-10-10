@@ -1,0 +1,475 @@
+body {
+  background-color: #b1b6ff;
+  direction: rtl;
+  text-align: center;
+  font-family: Arial;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#rideme {
+  margin-top: 1.5em;
+  margin-bottom: 0em;
+  width: 20%;
+  border-bottom: 0.3em solid #b1b6ff;
+}
+
+#rideme:hover {
+  border-bottom: 0.3em solid #fbca30;
+}
+
+ul {
+  margin: 0 auto;
+}
+
+.car {
+  display: none;
+  position: absolute;
+  left: 42%;
+  bottom: 120%;
+  width: 1em;
+}
+
+.li {
+  position: relative;
+  /* display: inline-block; */
+  font-size: 1em;
+  list-style-type: none;
+  background-color: #ffdca6;
+  border: 0.1em solid black;
+  /* margin-top: 0.5em;
+  margin-right: 0.3em; */
+  width: 30%;
+  /* height: 1.2em; */
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
+  -webkit-transition: width 1s, background-color 1s;
+  transition: width 1s, background-color 1s;
+  -moz-transition: width 1s, background-color 1s;
+  -o-transition: width 1s, background-color 1s;
+}
+
+.li:hover {
+  width: 35%;
+}
+
+.li h1 {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.li h1:hover,
+footer a:hover {
+  color: white;
+}
+
+.li:hover .car {
+  display: block;
+}
+
+/*index----------------------------------------------------------------------------------*/
+
+/* h1 {
+	margin: 0 auto;
+	margin-top: 0.3em;
+	font-size: 3em;
+	direction: ltr;
+	color: #E86B0C;
+	margin-bottom: 0.1em;
+	width: 50%;
+	background-color: #FFA10D;
+	font-size: 3em;
+	font-weight: bold;
+	-webkit-border-radius: 0.5em;
+} */
+
+#car-share {
+  width: 30%;
+  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+}
+
+/*search and advertising form----------------------------------------------------------------------------------*/
+
+.search-adv-form {
+  position: relative;
+  display: inline-block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0.2em 0;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: right;
+  background-color: #ccc;
+  width: 50%;
+  -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
+}
+
+.search-adv-form p {
+  font-size: 0.5em;
+  margin-right: 3em;
+  color: green;
+}
+
+.search-adv-form img {
+  display: block;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 30%;
+}
+
+#results,
+#results2 {
+  color: white;
+  margin: 0 auto;
+  margin-bottom: 0.7em;
+  width: 35%;
+  background-color: #C48251;
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 0.9em;
+}
+
+#big-div-table {
+  margin: 0 auto;
+  margin-top: 0.2em;
+  margin-bottom: 1.5em;
+  width: 85%;
+  font-size: 1.2em;
+}
+
+#big-div-table #head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #CC510A;
+  border-bottom: 0.1em solid black;
+  /* width: 100%; */
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+#big-div-table #head div {
+  /* display: inline-table; */
+  font-weight: bold;
+  width: 20%;
+  /* background: red; */
+  /*border: 1px solid black;*/
+}
+
+/*-----------------change class------------------------*/
+
+.is-closed {
+  justify-content: space-between;
+  align-items: 'center';
+  height: 1.9em;
+  font-weight: normal;
+  background-color: #CC870A;
+  /* line-height: 1.5em; */
+  border-bottom: 0.1em solid #b1b6ff;
+  /* width: 100%; */
+  transition: height 1s;
+  -moz-transition: height 1s;
+  -webkit-transition: height 1s;
+}
+
+/* .table-div-raw div {
+  display: inline-table;
+  border: 1px solid green;
+  width: 13%;
+  white-space: nowrap;
+  -webkit-transition: color 1.5s;
+  transition: color 1.5s;
+  -moz-transition: color 1.5s;
+  -o-transition: color 1.5s;
+} */
+
+.is-closed:hover {
+  background-color: #CC5153;
+}
+
+.is-open {
+  flex-direction: 'column';
+  height: 11em;
+  font-weight: bold;
+  background-color: #CC5153;
+  line-height: 1.5em;
+  border-bottom: 0.1em solid #b1b6ff;
+  color: white;
+  -webkit-transition: height 1s;
+  transition: height 1s;
+  -moz-transition: height 1s;
+}
+
+/* .divTdIsOpen div {
+		display: 'flex';
+		flex-direction: 'column';
+		border: 1px solid green;
+		width: 13%;
+		white-space: nowrap;
+	} */
+
+.up {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  /* background: yellow; */
+  padding-right: 50px;
+  padding-left: 50px;
+  /* height: 100%; */
+}
+
+.up div {
+  width: 20%;
+  /* background: red; */
+}
+
+Col {
+  background: red;
+}
+
+.down {
+  /* display: block; */
+  width: 80%;
+  height: 6em;
+  box-shadow: 0.1em 0.3em 1em black;
+  font-weight: normal;
+  text-align: right;
+  background-color: #e5661d;
+  border: #bb4400 0.1em solid;
+  margin: 0 auto;
+  margin-top: 0.2em;
+  color: black;
+  opacity: 1;
+  transition: opacity 1s;
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+}
+
+.down-opacity {
+  /* display: block; */
+  width: 80%;
+  height: 6em;
+  box-shadow: 0.1em 0.3em 1em black;
+  font-weight: normal;
+  text-align: right;
+  background-color: #e5661d;
+  border: #bb4400 0.1em solid;
+  margin: 0 auto;
+  margin-top: 0.2em;
+  color: black;
+  opacity: 0.5;
+  -webkit-transition: height 1s;
+  transition: height 1s;
+  -moz-transition: height 1s;
+}
+
+/*-----------------------------------------*/
+
+/*
+ table#table {
+ width: 80%;
+ margin: 0 auto;
+ margin-top: 0.1em;
+ margin-bottom: 1.5em;
+ font-size: 2em;
+ border: none;
+ border-collapse: collapse;
+ }
+
+ table#table th {
+ background-color: #CC510A;
+ border-bottom: 0.1em solid black;
+ }
+
+ table#table tr {
+ position: relative;
+ background-color: #CC870A;
+ line-height: 1.5em;
+ border-bottom: 0.1em solid #b1b6ff;
+ }
+
+ /* .repeat1 {class lo mugdar
+ height: 1.5em;
+ border: 1px solid green;
+ vertical-align: top;
+ }
+
+ table#table tr:hover {
+ background-color: #CC5153;
+ }
+ #tdDate {
+ font-size: 0.7em;
+ }
+ */
+
+.search-adv-form div label {
+  width: 4em;
+}
+
+.search-adv-form div#date-time span {
+  font-size: 0.7em;
+}
+
+div label {
+  float: right;
+  text-align: left;
+  clear: right;
+  margin-left: 1em;
+}
+
+#school {
+  margin-left: 1em;
+  white-space: nowrap;
+}
+
+div span {
+  font-size: 0.8em;
+}
+
+select,
+input {
+  text-align: right;
+}
+
+#button-clear-search {
+  font-size: 0.5em;
+  margin-right: 12em;
+  border-radius: 1em;
+  background-color: #ffcd7f;
+  padding: 0.5em;
+  font-weight: bold;
+}
+
+#button-clear-search:hover {
+  cursor: pointer;
+  background-color: #1EC7E6;
+}
+
+#button-div-adv {
+  margin-right: 5em;
+}
+
+#button-adv-itself {
+  border-radius: 1em;
+  background-color: #ffcd7f;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.5em;
+}
+
+#button-adv-itself:hover {
+  cursor: pointer;
+  background-color: #1EC7E6;
+}
+
+#button-send-button {
+  margin-right: 10.5em;
+}
+
+#button-send-itself {
+  border-radius: 0.5em;
+  background-color: #ffcd7f;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.1em 0.5em;
+}
+
+#button-send-itself:hover {
+  cursor: pointer;
+  background-color: #1EC7E6;
+}
+
+#advTextarea {
+  text-align: right;
+  margin-top: 0.5em;
+  margin-right: 2.5em;
+  width: 60%;
+  height: 8em;
+}
+
+/*contact form----------------------------------------------------------------------------------*/
+
+div#instant-message {
+  padding: 0.5em 0.5em;
+  position: relative;
+  display: inline-block;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+  background-color: #ccc;
+  width: 60%;
+  font-family: Arial;
+  font-size: 1.5em;
+  text-align: right;
+  -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
+}
+
+#mail {
+  float: left;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-left: 0.5em;
+  color: #808080;
+}
+
+#send-button {
+  margin-right: 8.5em;
+  color: red;
+}
+
+footer {
+  width: 100%;
+  height: 1em;
+  border-top: 0.1em solid gray;
+  position: fixed;
+  bottom: 0px;
+  background-color: #ffcd7f;
+  color: black;
+  font-size: 1.5em;
+}
+
+footer a {
+  color: black;
+}
+
+/*about----------------------------------------------------------------------------------*/
+
+div#about {
+  width: 60%;
+  background-color: #ccc;
+  display: inline-block;
+  margin-top: 2em;
+  font-size: 1.5em;
+  font-family: Arial;
+  line-height: 1.5em;
+  -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
+  padding: 0.5em 0.5em;
+}
+
+div#about h3 {
+  text-decoration: underline;
+}
+
+.star {
+  color: red;
+}
+
+#Clip-arts {
+  margin-top: 1em;
+}

@@ -1,0 +1,223 @@
+@media screen and (max-width: 600px) {
+  #rideme {
+    margin-top: 1em;
+    margin-bottom: 0;
+    width: 50%;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  ul li {
+    display: block;
+    font-size: 2em;
+    list-style-type: none;
+    border: 3px solid black;
+    width: 80%;
+    margin: 0.5em auto;
+  }
+  .search-adv-form {
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    font-size: 1.4em;
+    text-align: right;
+    width: 80%;
+  }
+  .search-adv-form div {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+  }
+  .search-adv-form img {
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 15%;
+  }
+  #button-clear-search {
+    margin-right: 8em;
+    padding: 0.5em;
+    font-weight: bold;
+  }
+  #button-div-adv {
+    margin-right: 4em;
+  }
+  #button-adv-itself {
+    font-size: 0.8em;
+    padding: 0.5em;
+  }
+  #button-send-button {
+    margin-right: 0em;
+  }
+  #button-send-itself {
+    font-size: 1em;
+    padding: 0.1em 0.5em;
+  }
+  #big-div-table {
+    width: 95%;
+    font-size: 1em;
+  }
+  .table-div-raw {
+    height: 5em;
+  }
+  .table-div-raw div {
+    display: inline-table;
+    /*border: 1px solid green;*/
+    width: 13%;
+    white-space: normal;
+    vertical-align: middle;
+  }
+  .divTdIsOpen {
+    height: 11.5em;
+  }
+  #downarrow {
+    width: 1.7em;
+  }
+  #results,
+  #results2 {
+    width: 60%;
+    font-size: 1.5em;
+  }
+  div#instant-message {
+    line-height: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    text-align: center;
+    width: 90%;
+  }
+  #send-button {
+    margin: 0 auto;
+    margin-left: 11em;
+  }
+  #car-share {
+    width: 80%;
+  }
+  div#about {
+    width: 80%;
+    display: inline-block;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 1em;
+    font-family: Arial;
+    line-height: 1.5em;
+  }
+  footer {
+    width: 100%;
+    height: 1em;
+    border-top: 2px solid gray;
+    position: fixed;
+    bottom: 0px;
+    background-color: #ffcd7f;
+    color: black;
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1025px) {
+  #rideme {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 50%;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  ul li {
+    display: inline-block;
+    font-size: 2em;
+    list-style-type: none;
+    border: 3px solid black;
+    margin-right: 1em;
+    width: 33%;
+  }
+  .search-adv-form {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    font-size: 1.8em;
+    text-align: right;
+    width: 80%;
+  }
+  .search-adv-form img {
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 30%;
+  }
+  #results,
+  #results2 {
+    width: 40%;
+    font-size: 2em;
+  }
+  #big-div-table {
+    width: 90%;
+    font-size: 1.5em;
+  }
+  .table-div-raw {
+    height: 5em;
+  }
+  .table-div-raw div {
+    white-space: normal;
+    vertical-align: middle;
+  }
+  .divTdIsOpen {
+    height: 11.5em;
+  }
+  div#instant-message {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+    text-align: right;
+    width: 90%;
+  }
+  #car-share {
+    width: 60%;
+    margin-bottom: 2em;
+  }
+  div#about {
+    width: 80%;
+    display: inline-block;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 1.3em;
+    font-family: Arial;
+    line-height: 1.5em;
+  }
+}
+
+/*iphone 4, iphone 5*/
+
+@media screen and (max-width: 355px) {
+  .search-adv-form {
+    font-size: 1em;
+  }
+  #results,
+  #results2 {
+    width: 60%;
+    font-size: 1.6em;
+  }
+  #button-clear-search {
+    font-size: 0.7em;
+    margin-right: 6em;
+    padding: 0.5em;
+    font-weight: bold;
+  }
+  #button-div-adv {
+    margin-right: 5em;
+  }
+  #button-adv-itself {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+  #button-send-button {
+    margin-right: 0em;
+  }
+  #button-send-itself {
+    font-size: 1em;
+    padding: 0.1em 0.5em;
+  }
+  .search-adv-form div {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+  }
+}
