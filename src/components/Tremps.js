@@ -57,7 +57,6 @@ export default class Tremps extends Component {
   }
 
   renderTremps(tremps) {
-    debugger
     return tremps.map((tremp) => {
       const open = this.state.selected.indexOf(tremp._id) > -1
       return <div key={tremp._id}
@@ -78,7 +77,7 @@ export default class Tremps extends Component {
             <img
               style={{ width: 25, height: 25 }}
               alt={'arrow'}
-              src={require('../images/arrowdown.png')} />
+              src={open?require('../images/upArrow.png'):require('../images/downArrow.png')} />
           </div>
         </div>
 
