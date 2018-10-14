@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 export default class Navigation extends Component {
 
   renderNav(login, logout) {
-    return <div style={{ width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+    return <div style={{ width: '80%', display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
       <div className='li'>
         <NavLink to="/search">
           <h1>חפש טרמפ</h1>
@@ -20,6 +20,12 @@ export default class Navigation extends Component {
       <div className='li'>
         <NavLink to="/contact" >
           <h1>צור קשר</h1>
+          <img className="car" src={require('../images/thumb.png')} />
+        </NavLink>
+      </div>
+      <div className='li'>
+        <NavLink to="/contact" >
+          <h1>טרמפים שפרסמתי</h1>
           <img className="car" src={require('../images/thumb.png')} />
         </NavLink>
       </div>

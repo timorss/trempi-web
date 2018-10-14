@@ -29,6 +29,8 @@ body {
 
 ul {
   margin: 0 auto;
+  background: #bb4400;
+  width:100%;
 }
 
 .car {
@@ -40,16 +42,18 @@ ul {
 }
 
 .li {
-  position: relative;
-  /* display: inline-block; */
-  font-size: 1em;
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
   list-style-type: none;
   background-color: #ffdca6;
   border: 0.1em solid black;
   /* margin-top: 0.5em;
   margin-right: 0.3em; */
-  width: 30%;
-  /* height: 1.2em; */
+  width: 20%;
+  height: 60px;
   border-radius: 0.5em;
   -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
   -webkit-transition: width 1s, background-color 1s;
@@ -60,6 +64,12 @@ ul {
 
 .li:hover {
   width: 35%;
+  background-color: #CC5153;
+
+}
+.li a{
+
+  text-decoration:none;
 }
 
 .li h1 {
