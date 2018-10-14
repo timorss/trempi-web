@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "trempi_jwtPrivateKey",
+  "server": "trempi_db"
+}

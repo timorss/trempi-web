@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tremps from '../components/Tremps'
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
+import config from '../config';
 
 export default class RouterContainer extends Component {
   constructor (props) {
@@ -22,30 +23,22 @@ export default class RouterContainer extends Component {
 
 
   componentWillMount() {
-    let userFromToken = jwt.verify(localStorage.getItem('token'), '1234')
-    axios.get(`http://localhost:3000/api/tremps/`)
-      .then((res) => {
-        debugger
-        const tremps = res.data
-        console.log('genres are', tremps);
-        this.setState({ tremps })
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
+    this.getTremps()
   }
 
   getUserFromToken() {
+    // let token = localStorage.getItem('token')
     let userFromToken = jwt.verify(localStorage.getItem('token'), '1234')
     console.log('userFromToken', userFromToken);
     this.setState({ user: userFromToken.email });
     return userFromToken
   }
-
+  
   getTremps() {
-    let userFromToken = this.getUserFromToken()
+    // let userFromToken = this.getUserFromToken()
+    console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
     const { source, destination } = this.state
-    axios.get(`http://localhost:3000/api/tremps`, {
+    axios.get('http://localhost:3000/api/tremps', {
       params: {
         source,
         destination

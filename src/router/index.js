@@ -14,6 +14,7 @@ import Navigation from '../components/Navigation'
 import SecondNavigation from '../components/SecondNavigation'
 import axios from 'axios'
 import { createBrowserHistory } from 'history';
+import config from '../config';
 import '../style.css';
 import '../media_screen.css';
 
@@ -46,6 +47,8 @@ class RouterContainer extends Component {
 
   onSignUp({ name, email, password }) {
     let _this = this
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    console.log('config.BASE_URL', config.BASE_URL)
     axios.post('http://localhost:3000/api/users', {
       name,
       email,
@@ -57,9 +60,9 @@ class RouterContainer extends Component {
         _this.setState({ error: '' })
       })
       .catch(function (err) {
-        console.log(err.response.data);
         debugger
-        _this.setState({ error: err.response.data })
+        console.log(err.response.message);
+        _this.setState({ error: err.response.message })
       })
   }
 

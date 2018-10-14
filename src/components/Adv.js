@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
 
-
-
 export default class RouterContainer extends Component {
   constructor (props) {
     super(props);
