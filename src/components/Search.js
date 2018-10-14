@@ -33,12 +33,13 @@ export default class RouterContainer extends Component {
     this.setState({ user: userFromToken.email });
     return userFromToken
   }
-  
+
   getTremps() {
     // let userFromToken = this.getUserFromToken()
-    console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    console.log('config.BASE_URL', config.BASE_URL)
     const { source, destination } = this.state
-    axios.get('http://localhost:3000/api/tremps', {
+    axios.get(`${config.BASE_URL}/tremps`, {
       params: {
         source,
         destination

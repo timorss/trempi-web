@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-
+import config from '../config';
 class SignUp extends Component {
   constructor (props) {
     super(props);
@@ -33,7 +33,7 @@ class SignUp extends Component {
   }
 
   getUsers() {
-    axios.get('http://localhost:3000/api/users')
+    axios.get(`${config.BASE_URL}/users`)
       .then((res) => {
         const users = res.data
         console.log('users are: ', users);

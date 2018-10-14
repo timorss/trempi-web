@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
-
+import config from '../config';
 export default class RouterContainer extends Component {
   constructor (props) {
     super(props);
@@ -90,7 +90,7 @@ export default class RouterContainer extends Component {
     console.log('function works!');
     let userFromToken = this.getUserFromToken()
     const { name, source, destination, participate, seats, phoneNumber, details, } = this.state
-    axios.post(`http://localhost:3000/api/tremps`, {
+    axios.post(`${config.BASE_URL}/tremps`, {
       name,
       source,
       destination,

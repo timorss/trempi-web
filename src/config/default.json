@@ -1,4 +1,0 @@
-{
-  "jwtPrivateKey": "",
-  "server": "mongodb://localhost/trempi"
-}

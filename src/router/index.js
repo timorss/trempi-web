@@ -44,12 +44,17 @@ class RouterContainer extends Component {
     }
     this.onLogout = this.onLogout.bind(this)
   }
+  componentWillMount() {
+
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+    console.log('config.BASE_URL', config.BASE_URL)
+  }
 
   onSignUp({ name, email, password }) {
     let _this = this
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
-    axios.post('http://localhost:3000/api/users', {
+    axios.post(`${config.BASE_URL}/users`, {
       name,
       email,
       password
@@ -69,7 +74,7 @@ class RouterContainer extends Component {
   onLogin(values) {
     const { email, password } = values
     let _this = this
-    axios.post('http://localhost:3000/api/auth', {
+    axios.post(`${config.BASE_URL}/auth`, {
       email,
       password
     })
