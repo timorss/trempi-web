@@ -148,7 +148,9 @@ class RouterContainer extends Component {
           </Switch>
           <footer>
             <NavLink to="/about">
-              <div>אודות</div>
+              <div>
+                  אודות
+              </div>
             </NavLink>
           </footer>
         </div>

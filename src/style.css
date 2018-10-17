@@ -30,7 +30,7 @@ body {
 ul {
   margin: 0 auto;
   background: #bb4400;
-  width:100%;
+  width: 100%;
 }
 
 .car {
@@ -63,23 +63,46 @@ ul {
 }
 
 .li:hover {
-  width: 35%;
+  /* width: 35%; */
   background-color: #CC5153;
-
 }
-.li a{
 
-  text-decoration:none;
+.li a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .li h1 {
-  display: block;
-  text-decoration: none;
   color: black;
+  width: 100%;
 }
 
-.li h1:hover,
-footer a:hover {
+.li:hover h1 {
+  color: white;
+}
+
+footer {
+  background-color: #ffdca6;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  -o-transition: background-color 1s;
+}
+
+footer a {
+  text-decoration: none;
+
+}
+
+footer:hover {
+  background-color: #CC5153;
+  color: white;
+}
+
+footer:hover div {
   color: white;
 }
 
