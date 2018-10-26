@@ -8,24 +8,26 @@ export default class Navigation extends Component {
 
     if (!login || login === null) {
       return (
-
-        <Nav bsStyle="pills" style={{ display: 'flex' }} >
-          <NavItem eventKey={1} href="/signUp">
-            <Button bsStyle="primary" bsSize="small"><h3>הירשם</h3></Button>
-          </NavItem>
-          <NavItem eventKey={2} href="/login">
-            <Button bsStyle="primary" bsSize="small"><h3>התחבר</h3></Button>
-          </NavItem>
-        </Nav>
+        <Navbar>
+          <Nav style={{ display: 'flex' }} >
+            <NavItem eventKey={1} href="/signUp">
+              <Button bsStyle="primary" bsSize="small"><h4>הירשם</h4></Button>
+            </NavItem>
+            <NavItem eventKey={2} href="/login">
+              <Button bsStyle="primary" bsSize="small"><h4>התחבר</h4></Button>
+            </NavItem>
+          </Nav>
+        </Navbar>
       )
     } else {
-      return (<Nav style={{ display: 'flex' }}>
-        <NavItem eventKey={1} href="/signUp">
-          <Button onClick={logout} bsStyle="primary" bsSize="small"><h3>התנתק</h3></Button>
-        </NavItem>
-
-
-      </Nav>)
+      return (
+        <Navbar fluid collapseOnSelect>
+          <Nav pullLeft style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <NavItem eventKey={3} href="/signUp" >
+              <Button onClick={logout} bsStyle="primary" bsSize="small"><h4>התנתק</h4></Button>
+            </NavItem>
+          </Nav>
+        </Navbar>)
     }
   }
 

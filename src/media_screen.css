@@ -1,3 +1,38 @@
+/* iphone 4, iphone 5 */
+
+@media screen and (max-width: 355px) {
+  .search-adv-form {
+    font-size: 1.5em;
+  }
+  .search-adv-form select {
+    font-size: 0.8em;
+  }
+  /* #button-clear-search {
+    font-size: 0.7em;
+    margin-right: 6em;
+    padding: 0.5em;
+    font-weight: bold;
+  } */
+  #button-div-adv {
+    margin-right: 5em;
+  }
+  #button-adv-itself {
+    font-size: 1em;
+    padding: 0.5em;
+  }
+  #button-send-button {
+    margin-right: 0em;
+  }
+  #button-send-itself {
+    font-size: 1em;
+    padding: 0.1em 0.5em;
+  }
+  .search-adv-form div {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+  }
+}
+
 @media screen and (max-width: 600px) {
   #rideme {
     margin-top: 1em;
@@ -7,20 +42,26 @@
   h1 {
     font-size: 1.5em;
   }
-  ul li {
+  .big-div-table {
+    font-size: 0.5em;
+  }
+  /* ul li {
     display: block;
     font-size: 2em;
     list-style-type: none;
     border: 3px solid black;
     width: 80%;
     margin: 0.5em auto;
-  }
+  } */
   .search-adv-form {
     margin-top: 0.5em;
     margin-bottom: 1.5em;
     font-size: 1.4em;
     text-align: right;
     width: 80%;
+  }
+  .search-adv-form select {
+    font-size: 0.8em;
   }
   .search-adv-form div {
     margin-top: 0.3em;
@@ -113,7 +154,7 @@
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1025px) {
+@media screen and (min-width: 600px) {
   #rideme {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -122,20 +163,15 @@
   h1 {
     font-size: 1.5em;
   }
-  ul li {
-    display: inline-block;
-    font-size: 2em;
-    list-style-type: none;
-    border: 3px solid black;
-    margin-right: 1em;
-    width: 33%;
-  }
   .search-adv-form {
     margin-top: 1em;
     margin-bottom: 1.5em;
     font-size: 1.8em;
     text-align: right;
     width: 80%;
+  }
+  .search-adv-form select {
+    font-size: 0.6em;
   }
   .search-adv-form img {
     display: block;
@@ -182,42 +218,5 @@
     font-size: 1.3em;
     font-family: Arial;
     line-height: 1.5em;
-  }
-}
-
-/*iphone 4, iphone 5*/
-
-@media screen and (max-width: 355px) {
-  .search-adv-form {
-    font-size: 1em;
-  }
-  #results,
-  #results2 {
-    width: 60%;
-    font-size: 1.6em;
-  }
-  #button-clear-search {
-    font-size: 0.7em;
-    margin-right: 6em;
-    padding: 0.5em;
-    font-weight: bold;
-  }
-  #button-div-adv {
-    margin-right: 5em;
-  }
-  #button-adv-itself {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-  #button-send-button {
-    margin-right: 0em;
-  }
-  #button-send-itself {
-    font-size: 1em;
-    padding: 0.1em 0.5em;
-  }
-  .search-adv-form div {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
   }
 }

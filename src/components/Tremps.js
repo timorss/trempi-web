@@ -1,43 +1,4 @@
 import React, { Component } from 'react';
-// const tremps = [
-//   {
-//     id: 1,
-//     source: 'tlv',
-//     dest: 'bat-yam',
-//     date: '21.4.12',
-//     time: '9:00',
-//     price: 10,
-//     driver: 3,
-//     seats: 3,
-//     number: 3,
-//     details: 3,
-//   },
-//   {
-//     id: 2,
-//     source: 'tlv',
-//     dest: 'bat-yam',
-//     date: '21.4.12',
-//     time: '9:00',
-//     price: 10,
-//     driver: 3,
-//     seats: 3,
-//     number: 3,
-//     details: 3,
-//   },
-//   {
-//     id: 3,
-//     source: 'tlv',
-//     dest: 'bat-yam',
-//     date: '21.4.12',
-//     time: '9:00',
-//     price: 10,
-//     driver: 3,
-//     seats: 3,
-//     number: 3,
-//     details: 3,
-//   }
-// ]
-
 export default class Tremps extends Component {
   constructor (props) {
     super(props);
@@ -64,20 +25,20 @@ export default class Tremps extends Component {
 
       >
         <div className='up' style={{ height: open ? '20%' : '100%' }}>
-          <div >
+          <div style={{ width: '30%' }}>
             {tremp.source}
           </div>
-          <div  >
+          <div style={{ width: '30%' }}>
             {tremp.destination}
           </div>
-          <div  >
+          <div style={{ width: '30%' }}>
             {tremp.date}
           </div>
-          <div onClick={() => this.openTremp(tremp._id)}>
+          <div style={{ width: '10%' }} onClick={() => this.openTremp(tremp._id)}>
             <img
               style={{ width: 25, height: 25 }}
               alt={'arrow'}
-              src={open?require('../images/upArrow.png'):require('../images/downArrow.png')} />
+              src={open ? require('../images/upArrow.png') : require('../images/downArrow.png')} />
           </div>
         </div>
 
@@ -119,16 +80,16 @@ export default class Tremps extends Component {
     return (
       <div id='big-div-table' >
         <div id='head'>
-          <div>
+          <div style={{ width: '30%' }}>
             מוצא:
 						</div>
-          <div>
+          <div style={{ width: '30%' }}>
             יעד:
 						</div>
-          <div>
+          <div style={{ width: '30%' }}>
             תאריך:
 						</div>
-          <div ></div>
+          <div style={{ width: '10%' }}></div>
         </div>
         {
           data.length === 0
