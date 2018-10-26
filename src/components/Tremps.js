@@ -25,18 +25,18 @@ export default class Tremps extends Component {
 
       >
         <div className='up' style={{ height: open ? '20%' : '100%' }}>
-          <div style={{ width: '30%' }}>
+          <div style={{ width: '45%' }}>
             {tremp.source}
           </div>
-          <div style={{ width: '30%' }}>
+          <div style={{ width: '45%' }}>
             {tremp.destination}
           </div>
-          <div style={{ width: '30%' }}>
+          {/* <div style={{ width: '20%' }}>
             {tremp.date}
-          </div>
+          </div> */}
           <div style={{ width: '10%' }} onClick={() => this.openTremp(tremp._id)}>
             <img
-              style={{ width: 25, height: 25 }}
+              style={{ width: 20, height: 20 }}
               alt={'arrow'}
               src={open ? require('../images/upArrow.png') : require('../images/downArrow.png')} />
           </div>
@@ -44,8 +44,8 @@ export default class Tremps extends Component {
 
         {this.state.selected.indexOf(tremp._id) > -1
           && <div className='down'>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
-              <div style={{ marginLeft: 100 }}>
+            <div className='down-inside'>
+              <div className='details-inside'>
                 <div>
                   <strong>שם הנהג:</strong> {tremp.name}
                 </div>
@@ -80,15 +80,15 @@ export default class Tremps extends Component {
     return (
       <div id='big-div-table' >
         <div id='head'>
-          <div style={{ width: '30%' }}>
+          <div style={{ width: '45%' }}>
             מוצא:
 						</div>
-          <div style={{ width: '30%' }}>
+          <div style={{ width: '45%' }}>
             יעד:
 						</div>
-          <div style={{ width: '30%' }}>
+          {/* <div style={{ width: '20%' }}>
             תאריך:
-						</div>
+						</div> */}
           <div style={{ width: '10%' }}></div>
         </div>
         {

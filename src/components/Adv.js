@@ -600,7 +600,7 @@ export default class RouterContainer extends Component {
         </select>
         <span>:</span>
 
-        <select style={{ width: 50 }} value={this.state.hour} onChange={(event) => this.handleChange(event, 'hour')}>
+        <select style={{ width: 55 }} value={this.state.hour} onChange={(event) => this.handleChange(event, 'hour')}>
           <option value="">שעה</option>
           <option ng-value="07">07 </option><option ng-value="08">08 </option>
           <option ng-value="09">09 </option><option value="10">10 </option><option value="11">11 </option>
@@ -652,7 +652,7 @@ export default class RouterContainer extends Component {
 
       <div>
         <label> פלאפון:</label>
-        <input type="text" size={12} onChange={(event) => this.handleChange(event, 'phoneNumber')} />
+        <input type="text" size={8} onChange={(event) => this.handleChange(event, 'phoneNumber')} />
         <span className="star">*</span>
       </div>
       <div>

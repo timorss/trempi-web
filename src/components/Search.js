@@ -621,7 +621,7 @@ export default class RouterContainer extends Component {
           <div>
             <label> שעה:</label>
 
-            <span>בסביבות:</span>
+            <span>בסביבות: </span>
 
             <select value={this.state.hour}
               onChange={(event) => this.handleChange(event, 'hour')}>

@@ -5,8 +5,8 @@ export default class Navigation extends Component {
 
   renderNav() {
     return (
-    <Grid style={{ background: 'yellow' }} >
-      <Row style={{ background: 'red'}}>
+    <Grid >
+      <Row>
         <Col xs={12} sm={6} md={3} className='navCol'>
           <div className='li'>
             <NavLink to="/search">

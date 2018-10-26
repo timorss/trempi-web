@@ -1,89 +1,167 @@
 /* iphone 4, iphone 5 */
 
-@media screen and (max-width: 355px) {
-  .search-adv-form {
-    font-size: 1.5em;
+@media screen and (min-width: 0px) {
+  .navCol {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
   }
-  .search-adv-form select {
-    font-size: 0.8em;
-  }
-  /* #button-clear-search {
-    font-size: 0.7em;
-    margin-right: 6em;
-    padding: 0.5em;
-    font-weight: bold;
-  } */
-  #button-div-adv {
-    margin-right: 5em;
-  }
-  #button-adv-itself {
-    font-size: 1em;
-    padding: 0.5em;
-  }
-  #button-send-button {
-    margin-right: 0em;
-  }
-  #button-send-itself {
-    font-size: 1em;
-    padding: 0.1em 0.5em;
-  }
-  .search-adv-form div {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  #rideme {
-    margin-top: 1em;
-    margin-bottom: 0;
-    width: 50%;
-  }
-  h1 {
-    font-size: 1.5em;
-  }
-  .big-div-table {
-    font-size: 0.5em;
-  }
-  /* ul li {
-    display: block;
-    font-size: 2em;
-    list-style-type: none;
-    border: 3px solid black;
+  .navCol .li {
+    background-color: #ffdca6;
+    border: 0.1em solid black;
+    border-radius: 20px;
+    /* margin-top: 0.5em;
+    margin-right: 0.3em; */
     width: 80%;
-    margin: 0.5em auto;
-  } */
+    height: 60px;
+    /* border-radius: 0.5em; */
+    /* -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px; */
+    -webkit-transition: width 1s, background-color 1s;
+    transition: width 1s, background-color 1s;
+    -moz-transition: width 1s, background-color 1s;
+    -o-transition: width 1s, background-color 1s;
+  }
+  .navCol .li:hover {
+    /* width: 35%; */
+    background-color: #CC5153;
+  }
+  .navCol .li a {
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .navCol .li h1 {
+    color: black;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .navCol .li:hover h1 {
+    color: white;
+  }
   .search-adv-form {
+    font-size: 1em;
+  }
+
+  .search-adv-form {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    padding: 0.2em 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: right;
+    background-color: #ccc;
+    width: 80%;
+    -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
+  }
+  
+  /* .search-adv-form {
     margin-top: 0.5em;
     margin-bottom: 1.5em;
     font-size: 1.4em;
     text-align: right;
     width: 80%;
-  }
-  .search-adv-form select {
-    font-size: 0.8em;
-  }
-  .search-adv-form div {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
+  } */
+  .search-adv-form p {
+    font-size: 14px;
+    margin-right: 0.8em;
+    color: green;
   }
   .search-adv-form img {
-    display: block;
     position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 15%;
+    top: 70px;
+    left: 10px;
+    width: 30%;
+    /* height: 25px; */
   }
-  #button-clear-search {
-    margin-right: 8em;
-    padding: 0.5em;
+  .search-adv-form select {
+    font-size: 0.7em;
+  }
+  .search-adv-form input {
+    font-size: 0.7em;
+  }
+  .search-adv-form textarea {
+    font-size: 0.7em;
+  }
+  .search-adv-form div label {
+    width: 4em;
+    /* float: left; */
+    text-align: left;
+    clear: right;
+    margin-left: 0.6em;
+  }
+  #big-div-table {
+    margin: 0 auto;
+    margin-top: 0.2em;
+    margin-bottom: 1.5em;
+    width: 90%;
+    font-size: 1em;
+  }
+  #big-div-table #head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #CC510A;
+    border-bottom: 0.1em solid black;
+    /* width: 100%; */
+  }
+  #big-div-table #head div {
+    /* display: inline-table; */
     font-weight: bold;
+    width: 20%;
+    /* background: red; */
+    /*border: 1px solid black;*/
+  }
+  .up {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    /* background: yellow; */
+    /* padding-right: 50px; */
+    /* padding-left: 50px; */
+    /* height: 100%; */
+  }
+  .up div {
+    width: 20%;
+    /* background: red; */
   }
   #button-div-adv {
-    margin-right: 4em;
+    /* margin-right: 5em; */
+  }
+  .down {
+    /* display: block; */
+    width: 95%;
+    height: 7em;
+    box-shadow: 0.1em 0.3em 1em black;
+    font-weight: normal;
+    text-align: right;
+    background-color: #e5661d;
+    border: #bb4400 0.1em solid;
+    margin: 0 auto;
+    margin-top: 0.2em;
+    color: black;
+    opacity: 1;
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+  }
+  .down-inside {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20;
+    padding-right: 20;
+  }
+  .details-inside {
+    margin-left:10px;
   }
   #button-adv-itself {
-    font-size: 0.8em;
+    font-size: 1em;
     padding: 0.5em;
   }
   #button-send-button {
@@ -93,130 +171,66 @@
     font-size: 1em;
     padding: 0.1em 0.5em;
   }
-  #big-div-table {
-    width: 95%;
-    font-size: 1em;
+  .search-adv-form div {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
   }
-  .table-div-raw {
-    height: 5em;
-  }
-  .table-div-raw div {
-    display: inline-table;
-    /*border: 1px solid green;*/
-    width: 13%;
-    white-space: normal;
-    vertical-align: middle;
-  }
-  .divTdIsOpen {
-    height: 11.5em;
-  }
-  #downarrow {
-    width: 1.7em;
-  }
-  #results,
-  #results2 {
-    width: 60%;
-    font-size: 1.5em;
-  }
-  div#instant-message {
-    line-height: 2em;
+  #advTextarea {
+    text-align: right;
     margin-top: 0.5em;
-    margin-bottom: 2em;
-    font-size: 1.1em;
-    text-align: center;
-    width: 90%;
-  }
-  #send-button {
-    margin: 0 auto;
-    margin-left: 11em;
-  }
-  #car-share {
+    margin-right: 1.5em;
     width: 80%;
-  }
-  div#about {
-    width: 80%;
-    display: inline-block;
-    margin-top: 1em;
-    margin-bottom: 2em;
-    font-size: 1em;
-    font-family: Arial;
-    line-height: 1.5em;
-  }
-  footer {
-    width: 100%;
-    height: 1em;
-    border-top: 2px solid gray;
-    position: fixed;
-    bottom: 0px;
-    background-color: #ffcd7f;
-    color: black;
-    font-size: 1em;
+    height: 4em;
   }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 400px) {
+  .details-inside {
+    margin-left:55px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #advTextarea {
+    /* text-align: right;
+    margin-top: 0.5em;
+    height: 4em; */
+    margin-right: 1.5em;
+    width: 80%;
+  }
   #rideme {
     margin-top: 1em;
     margin-bottom: 1em;
     width: 50%;
   }
-  h1 {
-    font-size: 1.5em;
+  .navCol .li {
+    width: 100%;
   }
-  .search-adv-form {
+  .details-inside {
+    margin-left:200px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  #rideme {
     margin-top: 1em;
-    margin-bottom: 1.5em;
-    font-size: 1.8em;
-    text-align: right;
-    width: 80%;
+    margin-bottom: 1em;
+    width: 30%;
+  }
+  .search-adv-form p {
+    font-size: 1em;
   }
   .search-adv-form select {
-    font-size: 0.6em;
+    font-size: 0.8em;
   }
   .search-adv-form img {
     display: block;
     position: absolute;
     top: 10%;
     left: 5%;
-    width: 30%;
+    width: 20%;
   }
-  #results,
-  #results2 {
-    width: 40%;
-    font-size: 2em;
-  }
-  #big-div-table {
-    width: 90%;
-    font-size: 1.5em;
-  }
-  .table-div-raw {
-    height: 5em;
-  }
-  .table-div-raw div {
-    white-space: normal;
-    vertical-align: middle;
-  }
-  .divTdIsOpen {
-    height: 11.5em;
-  }
-  div#instant-message {
-    margin-top: 1em;
-    margin-bottom: 2em;
-    font-size: 1.5em;
-    text-align: right;
-    width: 90%;
-  }
-  #car-share {
-    width: 60%;
-    margin-bottom: 2em;
-  }
-  div#about {
-    width: 80%;
-    display: inline-block;
-    margin-top: 2em;
-    margin-bottom: 2em;
-    font-size: 1.3em;
-    font-family: Arial;
-    line-height: 1.5em;
+  .details-inside {
+    margin-left:400px;
   }
 }

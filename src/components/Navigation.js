@@ -8,15 +8,17 @@ export default class Navigation extends Component {
 
     if (!login || login === null) {
       return (
-        <Navbar>
+        <Navbar >
           <Nav style={{ display: 'flex' }} >
-            <NavItem eventKey={1} href="/signUp">
+            <NavItem eventKey={1} href="/signUp" >
               <Button bsStyle="primary" bsSize="small"><h4>הירשם</h4></Button>
             </NavItem>
-            <NavItem eventKey={2} href="/login">
+            <NavItem eventKey={2} href="/login" >
               <Button bsStyle="primary" bsSize="small"><h4>התחבר</h4></Button>
             </NavItem>
           </Nav>
+
+
         </Navbar>
       )
     } else {
