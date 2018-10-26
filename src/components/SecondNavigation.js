@@ -23,12 +23,12 @@ export default class Navigation extends Component {
           <img className="car" src={require('../images/thumb.png')} />
         </NavLink>
       </div>
-      {/* <div className='li'>
+      <div className='li'>
         <NavLink to="/contact" >
           <h1>טרמפים שפרסמתי</h1>
           <img className="car" src={require('../images/thumb.png')} />
         </NavLink>
-      </div> */}
+      </div>
     </div>
   }
 

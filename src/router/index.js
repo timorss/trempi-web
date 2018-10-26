@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch, Redirect, NavLink, Link } from 'react-router-dom' // Redirect, withRouter 
-// import app2 from '../App2'
+import { Button, Grid, Row, Col, Jumbotron } from 'react-bootstrap'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Search from '../components/Search'
 import Adv from '../components/Adv'
 import Contact from '../components/Contact'
 import About from '../components/About'
-// import Genres from '../components/Genres'
 import Tremps from '../components/Tremps'
 import Error from '../components/Error'
 import Navigation from '../components/Navigation'
@@ -104,12 +103,12 @@ class RouterContainer extends Component {
       <Router history={history}>
         <div>
           {/* <a href="index.html"></a> */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}> */}
             <Navigation
               login={localStorage.getItem('token')}
               logout={this.onLogout}
             />
-          </div>
+          {/* </div> */}
           <Link to="/search">
             <img id="rideme" src={require('../images/logonormal.png')} />
           </Link>
@@ -149,7 +148,7 @@ class RouterContainer extends Component {
           <footer>
             <NavLink to="/about">
               <div>
-                  אודות
+                אודות
               </div>
             </NavLink>
           </footer>
