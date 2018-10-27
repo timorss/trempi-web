@@ -116,7 +116,7 @@ export default class RouterContainer extends Component {
 
   render() {
     return (<form className="search-adv-form" onSubmit={this.handleSubmit}>
-      <img src={require('../images/car3.png')} />
+      <img src={require('../images/car3.png')} alt='car'/>
       <div>
         <label>מוצא:</label>
         <select

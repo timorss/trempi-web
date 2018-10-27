@@ -112,7 +112,7 @@ export default class RouterContainer extends Component {
   render() {
     return (<div style={{ marginBottom: '10%' }}>
       <form className="search-adv-form">
-        <img src={require('../images/car4.png')} />
+        <img src={require('../images/car4.png')} alt='car'/>
         <p>
           <strong>סטודנטים, </strong>ניתן לחפש במוצא וביעד גם לפי מוסדות לימוד!
         </p>

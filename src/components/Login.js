@@ -32,12 +32,32 @@ class Login extends Component {
     return (
       <div className="App" >
 
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 50 }}>
-          <h5>please login</h5>
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 150 }}>
+          {/* <h5>התחבר לטרמפי כדי לתפוס טרמפ!</h5> */}
           <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 200 }}>
-            <input type="text" value={email} onChange={this.onChangeEmail} placeholder="email" />
-            <input type="text" value={password} onChange={this.onChangePassword} placeholder="password" />
-            <input type="submit" value="signIn" className="calculate-button" />
+            <div class="form-group">
+              <input type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="אימייל"
+                value={email}
+                onChange={this.onChangeEmail}
+              />
+              <small id="emailHelp" class="form-text text-muted">האימייל לא ישותף עם אף אחד אחר</small>
+            </div>
+            <div class="form-group">
+              <input type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                value={password}
+                onChange={this.onChangePassword} />
+            </div>
+            <button type="submit" class="btn btn-info">התחבר</button>
+            {/* <input type="text" value={email} onChange={this.onChangeEmail} placeholder="email" /> */}
+            {/* <input type="text" value={password} onChange={this.onChangePassword} placeholder="password" /> */}
+            {/* <input type="submit" value="signIn" className="calculate-button" /> */}
           </form>
           <div>{error}</div>
         </div>

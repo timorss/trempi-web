@@ -3,7 +3,7 @@ import React from 'react';
 export default () => {
   return (
     <div id="instant-message">
-      <img className="car" src={require('../images/car3.png')} />
+      <img className="car" src={require('../images/car3.png')} alt='car'/>
       <p>
         אם יש לכם שאלות הערות המלצות או שינויים,
         אנא שלחו לנו במייל

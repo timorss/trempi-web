@@ -1,35 +1,48 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom'
-import { Navbar, NavItem, Nav, Button, Grid, Row, Col, Jumbotron } from 'react-bootstrap'
+// import { NavLink, Link } from 'react-router-dom'
 export default class Navigation extends Component {
 
   renderNav(login, logout) {
-
-
     if (!login || login === null) {
       return (
-        <Navbar >
-          <Nav style={{ display: 'flex' }} >
-            <NavItem eventKey={1} href="/signUp" >
-              <Button bsStyle="primary" bsSize="small"><h4>הירשם</h4></Button>
-            </NavItem>
-            <NavItem eventKey={2} href="/login" >
-              <Button bsStyle="primary" bsSize="small"><h4>התחבר</h4></Button>
-            </NavItem>
-          </Nav>
+        <nav className='navbar navbar-expand-lg'>
+          <div>
+            <a href="/signUp" >
+              <button type="button" class="btn btn-info" style={{ marginLeft: 5 }}>
+                <h5>הירשם</h5>
+              </button>
+            </a>
+            <a href="/login" >
+              <button type="button" class="btn btn-info">
+                <h5>התחבר</h5>
+              </button>
+            </a>
+          </div>
+          <div>
+            <a href="/search">
+              <img id="rideme" src={require('../images/logonormal.png')} alt='car'/>
+            </a>
+          </div>
+        </nav>
 
-
-        </Navbar>
       )
     } else {
       return (
-        <Navbar fluid collapseOnSelect>
-          <Nav pullLeft style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <NavItem eventKey={3} href="/signUp" >
-              <Button onClick={logout} bsStyle="primary" bsSize="small"><h4>התנתק</h4></Button>
-            </NavItem>
-          </Nav>
-        </Navbar>)
+        <nav className='navbar navbar-expand-lg'>
+          <div>
+            <a href="/signUp" >
+              <button type="button" class="btn btn-info" onClick={logout}>
+                <h5>התנתק</h5>
+              </button>
+            </a>
+          </div>
+          <div>
+            <a href="/search">
+              <img id="rideme" src={require('../images/logonormal.png')} alt='car'/>
+            </a>
+          </div>
+        </nav>
+      )
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch, Redirect, NavLink, Link } from 'react-router-dom' // Redirect, withRouter 
-import { Button, Grid, Row, Col, Jumbotron } from 'react-bootstrap'
+import { Router, Route, Switch, Redirect,
+  //  NavLink, Link 
+  } from 'react-router-dom' // Redirect, withRouter 
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Search from '../components/Search'
@@ -11,6 +12,7 @@ import Tremps from '../components/Tremps'
 import Error from '../components/Error'
 import Navigation from '../components/Navigation'
 import SecondNavigation from '../components/SecondNavigation'
+import TrempiFooter from '../components/TrempiFooter'
 import axios from 'axios'
 import { createBrowserHistory } from 'history';
 import config from '../config';
@@ -104,16 +106,16 @@ class RouterContainer extends Component {
         <div>
           {/* <a href="index.html"></a> */}
           {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}> */}
-            <Navigation
-              login={localStorage.getItem('token')}
-              logout={this.onLogout}
-            />
+          <Navigation
+            login={localStorage.getItem('token')}
+            logout={this.onLogout}
+          />
           {/* </div> */}
-          <Link to="/search">
+          {/* <Link to="/search">
             <img id="rideme" src={require('../images/logonormal.png')} />
-          </Link>
+          </Link> */}
 
-          <SecondNavigation />
+          {localStorage.getItem('token') && <SecondNavigation />}
           <Switch>
             <Route path='/' exact
               render={() => (
@@ -142,16 +144,9 @@ class RouterContainer extends Component {
             </div>} />
 
             <PrivateRoute path='/adv' component={Adv} />
-            {/* <PrivateRoute path='/contact' component={Contact} /> */}
             <Route component={Error} />
           </Switch>
-          <footer>
-            <NavLink to="/about">
-              <div>
-                אודות
-              </div>
-            </NavLink>
-          </footer>
+          <TrempiFooter />
         </div>
       </Router>
     )

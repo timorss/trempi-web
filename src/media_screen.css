@@ -1,6 +1,18 @@
 /* iphone 4, iphone 5 */
 
 @media screen and (min-width: 0px) {
+ .navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+  #rideme {
+    width: 80px;
+    border-bottom: 1px solid #b1b6ff;
+  }
+  #rideme:hover {
+    border-bottom: 1px solid #fbca30;
+  }
   .navCol {
     display: flex;
     justify-content: center;
@@ -44,7 +56,6 @@
   .search-adv-form {
     font-size: 1em;
   }
-
   .search-adv-form {
     position: relative;
     display: inline-block;
@@ -58,7 +69,6 @@
     width: 80%;
     -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
   }
-  
   /* .search-adv-form {
     margin-top: 0.5em;
     margin-bottom: 1.5em;
@@ -158,7 +168,7 @@
     padding-right: 20;
   }
   .details-inside {
-    margin-left:10px;
+    margin-left: 10px;
   }
   #button-adv-itself {
     font-size: 1em;
@@ -186,37 +196,24 @@
 
 @media screen and (min-width: 400px) {
   .details-inside {
-    margin-left:55px;
+    margin-left: 55px;
   }
 }
 
 @media screen and (min-width: 768px) {
   #advTextarea {
-    /* text-align: right;
-    margin-top: 0.5em;
-    height: 4em; */
     margin-right: 1.5em;
     width: 80%;
-  }
-  #rideme {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 50%;
   }
   .navCol .li {
     width: 100%;
   }
   .details-inside {
-    margin-left:200px;
+    margin-left: 200px;
   }
 }
 
 @media screen and (min-width: 990px) {
-  #rideme {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 30%;
-  }
   .search-adv-form p {
     font-size: 1em;
   }
@@ -231,6 +228,6 @@
     width: 20%;
   }
   .details-inside {
-    margin-left:400px;
+    margin-left: 400px;
   }
 }
