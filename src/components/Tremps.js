@@ -76,7 +76,7 @@ export default class Tremps extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, titleIfNoTremps } = this.props
     return (
       <div id='big-div-table' >
         <div id='head'>
@@ -93,7 +93,7 @@ export default class Tremps extends Component {
         </div>
         {
           data.length === 0
-            ? <div>אנו מצטערים, אין טרמפ העונה לבקשתך.</div>
+            ? <div>{titleIfNoTremps}</div>
             : this.renderTremps(data)
         }
       </div>

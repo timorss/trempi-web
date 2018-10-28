@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Tremps from '../components/Tremps'
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 import config from '../config';
 
 export default class RouterContainer extends Component {
@@ -21,21 +20,11 @@ export default class RouterContainer extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   componentWillMount() {
     this.getTremps()
   }
 
-  getUserFromToken() {
-    // let token = localStorage.getItem('token')
-    let userFromToken = jwt.verify(localStorage.getItem('token'), '1234')
-    console.log('userFromToken', userFromToken);
-    this.setState({ user: userFromToken.email });
-    return userFromToken
-  }
-
   getTremps() {
-    // let userFromToken = this.getUserFromToken()
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
     const { source, destination } = this.state
@@ -47,7 +36,7 @@ export default class RouterContainer extends Component {
     })
       .then((res) => {
         const tremps = res.data
-        console.log('genres are', tremps);
+        console.log('tremps are', tremps);
         this.setState({ tremps })
       })
       .catch(function (err) {
@@ -112,7 +101,7 @@ export default class RouterContainer extends Component {
   render() {
     return (<div style={{ marginBottom: '10%' }}>
       <form className="search-adv-form">
-        <img src={require('../images/car4.png')} alt='car'/>
+        <img src={require('../images/car4.png')} alt='car' />
         <p>
           <strong>סטודנטים, </strong>ניתן לחפש במוצא וביעד גם לפי מוסדות לימוד!
         </p>
@@ -657,7 +646,8 @@ export default class RouterContainer extends Component {
 
 
       </form>
-      <Tremps data={this.state.tremps} />
+      <Tremps data={this.state.tremps}
+        titleIfNoTremps={'אנו מצטערים, אין טרמפ העונה לבקשתך.'} />
     </div>
 
     )

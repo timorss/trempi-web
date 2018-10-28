@@ -34,7 +34,7 @@ export default class Navigation extends Component {
           </Col>
           <Col xs={12} sm={6} md={3} className='navCol'>
             <div className='li'>
-              <NavLink to="/contact" >
+              <NavLink to="/MyTremps" >
                 <h1>טרמפים שפרסמתי</h1>
                 {/* <img className="car" src={require('../images/thumb.png')} alt='car'/> */}
               </NavLink>

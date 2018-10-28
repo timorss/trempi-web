@@ -64,7 +64,7 @@ class SignUp extends Component {
     const { error } = this.props
     return (
       <div className="App" >
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 150 }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '10%' }}>
           {/* <h1 className="App-title">Users</h1>
           {this.renderUsers(this.state.users)} */}
           <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 200 }}>

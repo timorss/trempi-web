@@ -32,7 +32,7 @@ class Login extends Component {
     return (
       <div className="App" >
 
-        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 150 }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '10%' }}>
           {/* <h5>התחבר לטרמפי כדי לתפוס טרמפ!</h5> */}
           <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 200 }}>
             <div class="form-group">

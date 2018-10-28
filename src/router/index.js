@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import { Router, Route, Switch, Redirect,
+import {
+  Router, Route, Switch, Redirect,
   //  NavLink, Link 
-  } from 'react-router-dom' // Redirect, withRouter 
+} from 'react-router-dom' // Redirect, withRouter 
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Search from '../components/Search'
 import Adv from '../components/Adv'
 import Contact from '../components/Contact'
 import About from '../components/About'
-import Tremps from '../components/Tremps'
+// import Tremps from '../components/Tremps'
 import Error from '../components/Error'
+import MyTremps from '../components/MyTremps'
 import Navigation from '../components/Navigation'
 import SecondNavigation from '../components/SecondNavigation'
 import TrempiFooter from '../components/TrempiFooter'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 import { createBrowserHistory } from 'history';
 import config from '../config';
 import '../style.css';
@@ -41,14 +44,11 @@ class RouterContainer extends Component {
     super(props);
     this.state = {
       loggedIn: false,
-      error: ''
+      error: '',
+      title: 'Welcome to trempi',
+      user: {}
     }
     this.onLogout = this.onLogout.bind(this)
-  }
-  componentWillMount() {
-
-    console.log('process.env.NODE_ENV', process.env.NODE_ENV)
-    console.log('config.BASE_URL', config.BASE_URL)
   }
 
   onSignUp({ name, email, password }) {
@@ -100,6 +100,18 @@ class RouterContainer extends Component {
     this.setState({ loggedIn: false })
   }
 
+  renderTitle() {
+    let token = localStorage.getItem('token')
+    try {
+      let userFromToken = jwt.verify(token, '1234')
+      console.log('userFromToken', userFromToken);
+      return `שלום ${userFromToken.name}`
+    } catch (err) {
+      return 'ברוך הבא לטרמפי'
+    }
+  }
+
+
   render() {
     return (
       <Router history={history}>
@@ -114,7 +126,9 @@ class RouterContainer extends Component {
           {/* <Link to="/search">
             <img id="rideme" src={require('../images/logonormal.png')} />
           </Link> */}
-
+          <h2 style={{ marginTop: '10%' }}>
+            {this.renderTitle()}
+          </h2>
           {localStorage.getItem('token') && <SecondNavigation />}
           <Switch>
             <Route path='/' exact
@@ -135,12 +149,12 @@ class RouterContainer extends Component {
             <Route
               path='/login'
               render={() => <Login error={this.state.error} onLogin={(values) => this.onLogin(values)} />} />
-            <PrivateRoute path='/tremps' component={Tremps} />
+            {/* <PrivateRoute path='/tremps' component={Tremps} /> */}
+            <PrivateRoute path='/MyTremps' component={MyTremps} />
             <PrivateRoute path='/contact' component={Contact} />
             <PrivateRoute path='/about' component={About} />
             <PrivateRouteRender path='/search' render={() => <div>
               <Search />
-
             </div>} />
 
             <PrivateRoute path='/adv' component={Adv} />
