@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import {
   Router, Route, Switch, Redirect,
   //  NavLink, Link 
+  //screens
 } from 'react-router-dom' // Redirect, withRouter 
-import Login from '../components/Login'
-import SignUp from '../components/SignUp'
-import Search from '../components/Search'
-import Adv from '../components/Adv'
-import Contact from '../components/Contact'
-import About from '../components/About'
-// import Tremps from '../components/Tremps'
+import Login from '../screens/Login'
+import SignUp from '../screens/SignUp'
+import Search from '../screens/Search'
+import MyTremps from '../screens/MyTremps'
+import Adv from '../screens/Adv'
+import Contact from '../screens/Contact'
+import About from '../screens/About'
+// components
 import Error from '../components/Error'
-import MyTremps from '../components/MyTremps'
 import Navigation from '../components/Navigation'
 import SecondNavigation from '../components/SecondNavigation'
 import TrempiFooter from '../components/TrempiFooter'

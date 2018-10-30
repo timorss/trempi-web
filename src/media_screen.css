@@ -6,6 +6,24 @@
     align-items: center;
     justify-content: space-between;
   }
+  .nav:after,
+  .nav:before,
+  .navbar-collapse:after,
+  .navbar-collapse:before,
+  .navbar-header:after,
+  .navbar-header:before,
+  .navbar:after,
+  .navbar:before,
+  .pager:after,
+  .pager:before,
+  .panel-body:after,
+  .panel-body:before,
+  .row:after,
+  .row:before 
+  {
+    display: table;
+    content: none;
+  }
   #rideme {
     width: 80px;
     border-bottom: 1px solid #b1b6ff;

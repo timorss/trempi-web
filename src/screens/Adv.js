@@ -5,6 +5,7 @@ import config from '../config';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
+import Modal from '../components/Modal';
 require('moment/locale/he');
 export default class RouterContainer extends Component {
   constructor (props) {
@@ -16,7 +17,8 @@ export default class RouterContainer extends Component {
       time: moment(),
       participate: '0',
       seats: '',
-      details: ''
+      details: '',
+      show:false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeDateOrTime = this.handleChangeDateOrTime.bind(this);
@@ -44,9 +46,10 @@ export default class RouterContainer extends Component {
       default:
         break;
     }
-
-
   }
+exitModal(){
+  this.setState({ show: false });
+}
 
   handleChange(event, name) {
     switch (name) {
@@ -108,12 +111,11 @@ export default class RouterContainer extends Component {
       phoneNumber,
       details
     },
-      { headers: { 'x-auth-token': localStorage.getItem('token') } }
+    { headers: { 'x-auth-token': localStorage.getItem('token') } }
     )
-      .then((res) => {
-        // this.getUserById(res.data._id)
-        console.log('tremp is: ', res);
-
+    .then((res) => {
+      console.log('tremp is: ', res);
+      this.setState({ show: true })
       })
       .catch(function (err) {
         debugger
@@ -653,7 +655,11 @@ export default class RouterContainer extends Component {
       <div id="button-div-adv">
         <input type="submit" id="button-adv-itself" value={'פרסם טרמפ!'} />
       </div>
-
+      <Modal
+      show={this.state.show}
+      handleHide={()=>this.exitModal()}
+      advTremp={this.handleSubmit}
+      />
     </form>
     )
   }

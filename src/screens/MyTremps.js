@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
 import config from '../config';
-import Tremps from './Tremps';
+import Tremps from '../components/Tremps';
 
 export default class MyTremps extends Component {
   constructor (props) {
