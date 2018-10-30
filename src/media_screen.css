@@ -1,11 +1,11 @@
 /* iphone 4, iphone 5 */
 
 @media screen and (min-width: 0px) {
- .navbar{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
- }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   #rideme {
     width: 80px;
     border-bottom: 1px solid #b1b6ff;
@@ -185,12 +185,30 @@
     margin-top: 0.3em;
     margin-bottom: 0.3em;
   }
+  .search-adv-form .clear-button {
+    background: #CC5153;
+    width: 20px;
+    height: 20px;
+  }
   #advTextarea {
     text-align: right;
     margin-top: 0.5em;
     margin-right: 1.5em;
     width: 80%;
     height: 4em;
+  }
+  .date-time {
+    display: flex;
+    align-items: center;
+  }
+  .date-time input {
+    width: 60px;
+  }
+  .react-datepicker-wrapper {
+    margin: 0 !important;
+  }
+  .react-datepicker__input-container {
+    margin: 0 !important;
   }
 }
 

@@ -8,12 +8,12 @@ export default class Navigation extends Component {
         <nav className='navbar navbar-expand-lg'>
           <div>
             <a href="/signUp" >
-              <button type="button" class="btn btn-info" style={{ marginLeft: 5 }}>
+              <button type="button" className="btn btn-info" style={{ marginLeft: 5 }}>
                 <h5>הירשם</h5>
               </button>
             </a>
             <a href="/login" >
-              <button type="button" class="btn btn-info">
+              <button type="button" className="btn btn-info">
                 <h5>התחבר</h5>
               </button>
             </a>
@@ -31,7 +31,7 @@ export default class Navigation extends Component {
         <nav className='navbar navbar-expand-lg'>
           <div>
             <a href="/signUp" >
-              <button type="button" class="btn btn-info" onClick={logout}>
+              <button type="button" className="btn btn-info" onClick={logout}>
                 <h5>התנתק</h5>
               </button>
             </a>

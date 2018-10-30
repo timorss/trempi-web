@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 export default class Tremps extends Component {
   constructor (props) {
     super(props);
@@ -60,13 +61,11 @@ export default class Tremps extends Component {
                 </div>
               </div>
               <div>
-                <div> <strong>תאריך:</strong> <span>{tremp.date}</span></div>
-                <div> <strong>שעה:</strong> <span>{tremp.time}</span></div>
+                <div> <strong>תאריך:</strong> <span>{moment(tremp.date).format("MM/DD")}</span></div>
+                <div> <strong>שעה:</strong> <span>{moment(tremp.time).format('HH:mm')}</span></div>
                 <div> <strong>מחיר:</strong> <span>{tremp.participate}</span></div>
               </div>
             </div>
-
-
           </ div >
         }
       </ div >

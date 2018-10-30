@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
 import config from '../config';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
+require('moment/locale/he');
 export default class RouterContainer extends Component {
   constructor (props) {
     super(props);
     this.state = {
       source: '',
       destination: '',
+      date: moment(),
+      time: moment(),
       participate: '0',
-      month: '',
-      day: '',
-      minutes: '',
-      hour: '',
       seats: '',
       details: ''
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeDateOrTime = this.handleChangeDateOrTime.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -25,6 +28,24 @@ export default class RouterContainer extends Component {
     console.log('userFromToken', userFromToken);
     this.setState({ user: userFromToken.email });
     return userFromToken
+  }
+
+  handleChangeDateOrTime(value, name) {
+    debugger
+    console.log('value', value);
+    switch (name) {
+      case 'date':
+        this.setState({ date: value });
+        break;
+      case 'time':
+      debugger
+        this.setState({ time: value });
+        break;
+      default:
+        break;
+    }
+
+
   }
 
   handleChange(event, name) {
@@ -36,22 +57,6 @@ export default class RouterContainer extends Component {
       case 'destination':
         console.log('destination', event.target.value);
         this.setState({ destination: event.target.value });
-        break;
-      case 'month':
-        console.log('month', event.target.value);
-        this.setState({ month: event.target.value });
-        break;
-      case 'day':
-        console.log('day', event.target.value);
-        this.setState({ day: event.target.value });
-        break;
-      case 'minutes':
-        console.log('minutes', event.target.value);
-        this.setState({ minutes: event.target.value });
-        break;
-      case 'hour':
-        console.log('hour', event.target.value);
-        this.setState({ hour: event.target.value });
         break;
       case 'participate':
         console.log('participate', event.target.value);
@@ -81,7 +86,7 @@ export default class RouterContainer extends Component {
     }
   }
 
-  onRadioButtonChange(event) {
+  onRadioButtonChange() {
     this.setState({ participate: '0' });
   }
 
@@ -89,11 +94,14 @@ export default class RouterContainer extends Component {
     event.preventDefault();
     console.log('function works!');
     let userFromToken = this.getUserFromToken()
-    const { name, source, destination, participate, seats, phoneNumber, details, } = this.state
+    const { name, source, destination, date,time, participate, seats, phoneNumber, details, } = this.state
+    debugger
     axios.post(`${config.BASE_URL}/tremps`, {
       name,
       source,
       destination,
+      date: moment(date).format('DD/MM'),
+      time,
       user: userFromToken._id,
       participate,
       seats,
@@ -108,7 +116,9 @@ export default class RouterContainer extends Component {
 
       })
       .catch(function (err) {
-        console.log(err.response.data);
+        debugger
+        console.log(err.response);
+        // console.log(err.response.data);
       })
   }
 
@@ -116,7 +126,7 @@ export default class RouterContainer extends Component {
 
   render() {
     return (<form className="search-adv-form" onSubmit={this.handleSubmit}>
-      <img src={require('../images/car3.png')} alt='car'/>
+      <img src={require('../images/car3.png')} alt='car' />
       <div>
         <label>מוצא:</label>
         <select
@@ -565,61 +575,36 @@ export default class RouterContainer extends Component {
         <span className="star">*</span>
       </div>
 
-      <div id="date-time" >
-
+      <div className="date-time" >
         <label>תאריך:</label>
-
-
-        <select style={{ width: 60 }} value={this.state.month} onChange={(event) => this.handleChange(event, 'month')}>
-          <option value="">חודש </option><option value="01">01 </option><option value="02">02 </option><option value="03">03 </option><option value="04">04 </option><option value="05">05 </option><option value="06">06 </option><option value="07">07 </option><option value="08">08 </option><option value="09">09 </option><option value="10">10 </option><option value="11">11 </option><option value="12">12 </option>
-        </select >
-        <span>/</span>
-        <select style={{ width: 50 }} value={this.state.day} onChange={(event) => this.handleChange(event, 'day')}>
-          <option value="">יום</option><option value="01">01 </option><option value="02">02 </option><option value="03">03 </option><option value="04">04 </option><option value="05">05 </option><option value="06">06 </option><option value="07">07 </option><option value="08">08 </option><option value="09">09 </option><option value="10">10 </option><option value="11">11 </option><option value="12">12 </option><option value="13">13 </option><option value="14">14 </option><option value="15">15 </option><option value="16">16 </option><option value="17">17 </option><option value="18">18 </option><option value="19">19 </option><option value="20">20 </option><option value="21">21 </option><option value="22">22 </option><option value="23">23 </option><option value="24">24 </option><option value="25">25 </option><option value="26">26 </option><option value="27">27 </option><option value="28">28 </option><option value="29">29 </option><option value="30">30 </option><option value="31">31 </option>
-        </select>
+        <DatePicker
+          locale={'He'}
+          selected={this.state.date}
+          onChange={(value) => this.handleChangeDateOrTime(value, 'date')}
+          dateFormat="DD/MM"
+          placeholderText="תאריך"
+          minDate={moment()}
+        // showTimeSelect
+        />
+        {/* <Datetime
+          defaultValue={new Date()}
+          onChange={this.handleChangeDate}
+        /> */}
         <span className="star">*</span>
-
       </div>
 
-      <div>
+      <div className="date-time" >
         <label> שעה:</label>
-        <select style={{ width: 50 }} value={this.state.minutes} onChange={(event) => this.handleChange(event, 'minutes')}>
-          <option value="">דק'</option>
-          <option value="00">00 </option>
-          <option value="05">05 </option>
-          <option value="10">10 </option>
-          <option value="15">15 </option>
-          <option value="20">20 </option>
-          <option value="25">25 </option>
-          <option value="30">30 </option>
-          <option value="35">35 </option>
-          <option value="40">40 </option>
-          <option value="45">45 </option>
-          <option value="50">50 </option>
-          <option value="55">55 </option>
-        </select>
-        <span>:</span>
-
-        <select style={{ width: 55 }} value={this.state.hour} onChange={(event) => this.handleChange(event, 'hour')}>
-          <option value="">שעה</option>
-          <option ng-value="07">07 </option><option ng-value="08">08 </option>
-          <option ng-value="09">09 </option><option value="10">10 </option><option value="11">11 </option>
-          <option ng-value="12">12 </option>
-          <option ng-value="13">13 </option>
-          <option ng-value="14">14 </option>
-          <option ng-value="15">15 </option>
-          <option ng-value="16">16 </option>
-          <option ng-value="17">17 </option>
-          <option ng-value="18">18 </option>
-          <option ng-value="19">19 </option>
-          <option ng-value="20">20 </option>
-          <option ng-value="21">21 </option>
-          <option ng-value="22">22 </option>
-          <option ng-value="23">23 </option>
-          <option ng-value="00">00 </option>
-          <option ng-value="01">01 </option><option ng-value="02">02 </option><option ng-value="03">03 </option><option ng-value="04">04 </option><option ng-value="05">05 </option><option ng-value="06">06 </option>
-        </select>
-
+        <DatePicker
+          selected={this.state.time}
+          onChange={(value) => this.handleChangeDateOrTime(value, 'time')}
+          showTimeSelect
+          showTimeSelectOnly
+          timeFormat="HH:mm"
+          timeIntervals={30}
+          dateFormat="LT"
+          timeCaption="בחר שעה"
+        />
       </div>
 
       <div>
@@ -636,7 +621,7 @@ export default class RouterContainer extends Component {
 
       <div>
         <label>מקומות:</label>
-        <select style={{ width: 50 }} value={this.state.seats} onChange={(event) => this.handleChange(event, 'seats')}>
+        <select style={{ width: 58 }} value={this.state.seats} onChange={(event) => this.handleChange(event, 'seats')}>
           <option value="">בחר</option>
           <option >1</option>
           <option >2</option>
@@ -658,7 +643,11 @@ export default class RouterContainer extends Component {
       <div>
         <label style={{ textDecoration: 'underline' }}> הערות:</label>
         <br />
-        <textarea id="advTextarea" placeholder="תחנות סופיות או תחנות שאתם עוברים בדרך וכו' וכו'" maxLength={35} onChange={(event) => this.handleChange(event, 'textArea')}></textarea>
+        <textarea id="advTextarea"
+         placeholder="תחנות סופיות או תחנות שאתם עוברים בדרך וכו' וכו'"
+         maxLength={35} 
+         onChange={(event) => this.handleChange(event, 'textArea')}>
+         </textarea>
       </div>
 
       <div id="button-div-adv">

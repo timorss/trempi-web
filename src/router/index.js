@@ -21,6 +21,7 @@ import { createBrowserHistory } from 'history';
 import config from '../config';
 import '../style.css';
 import '../media_screen.css';
+import '../datePicker.css';
 
 const history = createBrowserHistory()
 
@@ -66,7 +67,6 @@ class RouterContainer extends Component {
         _this.setState({ error: '' })
       })
       .catch(function (err) {
-        debugger
         console.log(err.response.message);
         _this.setState({ error: err.response.message })
       })
@@ -88,7 +88,6 @@ class RouterContainer extends Component {
       })
       .catch(function (err) {
         console.log(err.response && err.response.data);
-        debugger
         _this.setState({ error: err.response.data })
       })
   }

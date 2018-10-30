@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Tremps from '../components/Tremps'
 import axios from 'axios'
 import config from '../config';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+require('moment/locale/he');
+const newDate = new Date()
 export default class RouterContainer extends Component {
   constructor (props) {
     super(props);
@@ -11,20 +15,16 @@ export default class RouterContainer extends Component {
       source: '',
       destination: '',
       participate: '0',
-      month: '',
-      day: '',
-      minutes: '',
-      hour: '',
+      date: '',
       seats: '',
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
   }
 
   componentWillMount() {
-    this.getTremps()
-  }
 
-  getTremps() {
+    console.log('willmount')
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
     const { source, destination } = this.state
@@ -42,6 +42,47 @@ export default class RouterContainer extends Component {
       .catch(function (err) {
         console.log(err);
       })
+
+  }
+
+  getTremps() {
+    const { source, destination, date } = this.state
+    debugger
+    axios.get(`${config.BASE_URL}/tremps`, {
+      params: {
+        source,
+        destination,
+        date: (date === '') ? '' : moment(date).format('DD/MM'),
+      }
+    })
+      .then((res) => {
+        const tremps = res.data
+        console.log('tremps are', tremps);
+        this.setState({ tremps })
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+  }
+
+  handleChangeDate(date) {
+    this.setState({ date }, () => this.getTremps());
+  }
+
+  clearField(name) {
+    switch (name) {
+      case 'source':
+        this.setState({ source: '' }, () => this.getTremps());
+        break;
+      case 'destination':
+        this.setState({ destination: '' }, () => this.getTremps());
+        break;
+      case 'date':
+        this.setState({ date: '' }, () => this.getTremps());
+        break;
+      default:
+        break;
+    }
   }
 
   handleChange(event, name) {
@@ -53,22 +94,6 @@ export default class RouterContainer extends Component {
       case 'destination':
         console.log('destination', event.target.value);
         this.setState({ destination: event.target.value }, () => this.getTremps());
-        break;
-      case 'month':
-        console.log('month', event.target.value);
-        this.setState({ month: event.target.value });
-        break;
-      case 'day':
-        console.log('day', event.target.value);
-        this.setState({ day: event.target.value });
-        break;
-      // case 'minutes':
-      //   console.log('minutes', event.target.value);
-      //   this.setState({ minutes: event.target.value });
-      //   break;
-      case 'hour':
-        console.log('hour', event.target.value);
-        this.setState({ hour: event.target.value });
         break;
       case 'participate':
         console.log('participate', event.target.value);
@@ -98,6 +123,7 @@ export default class RouterContainer extends Component {
     }
   }
 
+
   render() {
     return (<div style={{ marginBottom: '10%' }}>
       <form className="search-adv-form">
@@ -105,8 +131,6 @@ export default class RouterContainer extends Component {
         <p>
           <strong>סטודנטים, </strong>ניתן לחפש במוצא וביעד גם לפי מוסדות לימוד!
         </p>
-
-
         <div>
           <label>מוצא:</label>
           <select
@@ -114,7 +138,7 @@ export default class RouterContainer extends Component {
             style={{ width: 100 }}
             value={this.state.source}
             onChange={(event) => this.handleChange(event, 'source')}>
-            <option value="" disabled> בחר מוצא </option>
+            <option value="">בחר מוצא</option>
             <optgroup label="ישובים">
               <option value="אבן יהודה">אבן יהודה</option>
               <option value="אופקים">אופקים</option>
@@ -328,6 +352,9 @@ export default class RouterContainer extends Component {
               <option value="שנקר"> שנקר - הנדסה ולעיצוב </option>
             </optgroup>
           </select>
+          <button type="button" className='clear-button'
+            onClick={() => this.clearField('source')}
+          />
         </div>
         <div>
           <label>יעד:</label>
@@ -335,7 +362,7 @@ export default class RouterContainer extends Component {
             style={{ width: 100 }}
             value={this.state.destination}
             onChange={(event) => this.handleChange(event, 'destination')}>
-            <option value="" disabled> בחר יעד </option>
+            <option value="">בחר יעד</option>
             <optgroup label="ישובים">
               <option value="אבן יהודה">אבן יהודה</option>
               <option value="אופקים">אופקים</option>
@@ -549,101 +576,25 @@ export default class RouterContainer extends Component {
               <option value="שנקר"> שנקר - הנדסה ולעיצוב </option>
             </optgroup>
           </select>
-        </div>
-        <div id="date-time">
-          <div>
-            <label>תאריך:</label>
-            <select value={this.state.month}
-              onChange={(event) => this.handleChange(event, 'month')}>
-              <option value="" disabled> חודש </option>
-              <option value="01">01 </option>
-              <option value="02">02 </option>
-              <option value="03">03 </option>
-              <option value="04">04 </option>
-              <option value="05">05 </option>
-              <option value="06">06 </option>
-              <option value="07">07 </option>
-              <option value="08">08 </option>
-              <option value="09">09 </option>
-              <option value="10">10 </option>
-              <option value="11">11 </option>
-              <option value="12">12 </option>
-            </select>
-            <span>/</span>
-            <select value={this.state.day}
-              onChange={(event) => this.handleChange(event, 'day')}>
-              <option value="" disabled> יום </option>
-              <option value="01">01 </option>
-              <option value="02">02 </option>
-              <option value="03">03 </option>
-              <option value="04">04 </option>
-              <option value="05">05 </option>
-              <option value="06">06 </option>
-              <option value="07">07 </option>
-              <option value="08">08 </option>
-              <option value="09">09 </option>
-              <option value="10">10 </option>
-              <option value="11">11 </option>
-              <option value="12">12 </option>
-              <option value="13">13 </option>
-              <option value="14">14 </option>
-              <option value="15">15 </option>
-              <option value="16">16 </option>
-              <option value="17">17 </option>
-              <option value="18">18 </option>
-              <option value="19">19 </option>
-              <option value="20">20 </option>
-              <option value="21">21 </option>
-              <option value="22">22 </option>
-              <option value="23">23 </option>
-              <option value="24">24 </option>
-              <option value="25">25 </option>
-              <option value="26">26 </option>
-              <option value="27">27 </option>
-              <option value="28">28 </option>
-              <option value="29">29 </option>
-              <option value="30">30 </option>
-              <option value="31">31 </option>
-            </select>
-          </div>
-
-          <div>
-            <label> שעה:</label>
-
-            <span>בסביבות: </span>
-
-            <select value={this.state.hour}
-              onChange={(event) => this.handleChange(event, 'hour')}>
-              <option value="" disabled> שעה </option>
-              <option ng-value="07">07 </option>
-              <option ng-value="08">08 </option>
-              <option ng-value="09">09 </option>
-              <option value="10">10 </option>
-              <option value="11">11 </option>
-              <option ng-value="12">12 </option>
-              <option ng-value="13">13 </option>
-              <option ng-value="14">14 </option>
-              <option ng-value="15">15 </option>
-              <option ng-value="16">16 </option>
-              <option ng-value="17">17 </option>
-              <option ng-value="18">18 </option>
-              <option ng-value="19">19 </option>
-              <option ng-value="20">20 </option>
-              <option ng-value="21">21 </option>
-              <option ng-value="22">22 </option>
-              <option ng-value="23">23 </option>
-              <option ng-value="00">00 </option>
-              <option ng-value="01">01 </option>
-              <option ng-value="02">02 </option>
-              <option ng-value="03">03 </option>
-              <option ng-value="04">04 </option>
-              <option ng-value="05">05 </option>
-              <option ng-value="06">06 </option>
-            </select>
-
-          </div>
+          <button type="button" className='clear-button'
+            onClick={() => this.clearField('destination')}
+          />
         </div>
 
+        <div className="date-time">
+          <label>תאריך:</label>
+          <DatePicker
+            locale={'He'}
+            selected={this.state.date}
+            onChange={this.handleChangeDate}
+            dateFormat="DD/MM"
+            placeholderText="תאריך"
+            minDate={moment()}
+          />
+          <button type="button" className='clear-button'
+            onClick={() => this.clearField('date')}
+          />
+        </div>
 
       </form>
       <Tremps data={this.state.tremps}

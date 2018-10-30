@@ -69,9 +69,9 @@ class SignUp extends Component {
           {this.renderUsers(this.state.users)} */}
           <form onSubmit={this.handleSubmit} style={{ display: 'flex', flexDirection: 'column', width: 200 }}>
 
-            <div class="form-group">
+            <div className="form-group">
               <input type="text"
-                class="form-control"
+                className="form-control"
                 // id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="שם"
@@ -80,20 +80,20 @@ class SignUp extends Component {
               />
 
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="אימייל"
                 value={email}
                 onChange={this.onChangeEmail}
               />
-              <small id="emailHelp" class="form-text text-muted">האימייל לא ישותף עם אף אחד אחר</small>
+              <small id="emailHelp" className="form-text text-muted">האימייל לא ישותף עם אף אחד אחר</small>
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input type="password"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
                 value={password}
@@ -103,7 +103,7 @@ class SignUp extends Component {
             {/* <input type="text" value={name} onChange={this.onChangeName} placeholder="שם" /> */}
             {/* <input type="text" value={email} onChange={this.onChangeEmail} placeholder="אימייל" /> */}
             {/* <input type="text" placeholder="סיסמה" /> */}
-            <button type="submit" class="btn btn-info">הירשם</button>
+            <button type="submit" className="btn btn-info">הירשם</button>
           </form>
           <div>{error}</div>
         </div>

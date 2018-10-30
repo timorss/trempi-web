@@ -41,9 +41,9 @@ export default class MyTremps extends Component {
   }
 
   render() {
-    return (<div style={{ marginTop: '13%' }}>
+    return (<div style={{ marginTop: '7%', marginBottom: '10%' }}>
       <Tremps data={this.state.tremps}
-      titleIfNoTremps={'טרמפ שתפרסם יוצג כאן.'} />
+        titleIfNoTremps={'טרמפ שתפרסם יוצג כאן.'} />
     </div>
     )
   }
