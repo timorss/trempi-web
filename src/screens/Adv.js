@@ -33,14 +33,12 @@ export default class RouterContainer extends Component {
   }
 
   handleChangeDateOrTime(value, name) {
-    debugger
     console.log('value', value);
     switch (name) {
       case 'date':
         this.setState({ date: value });
         break;
       case 'time':
-      debugger
         this.setState({ time: value });
         break;
       default:
@@ -98,7 +96,6 @@ exitModal(){
     console.log('function works!');
     let userFromToken = this.getUserFromToken()
     const { name, source, destination, date,time, participate, seats, phoneNumber, details, } = this.state
-    debugger
     axios.post(`${config.BASE_URL}/tremps`, {
       name,
       source,
@@ -118,7 +115,6 @@ exitModal(){
       this.setState({ show: true })
       })
       .catch(function (err) {
-        debugger
         console.log(err.response);
         // console.log(err.response.data);
       })
@@ -653,7 +649,7 @@ exitModal(){
       </div>
 
       <div id="button-div-adv">
-        <input type="submit" id="button-adv-itself" value={'פרסם טרמפ!'} />
+        {/* <input type="submit" id="button-adv-itself" value={'פרסם טרמפ!'} /> */}
       </div>
       <Modal
       show={this.state.show}

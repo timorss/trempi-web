@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import jwt from 'jsonwebtoken'
 import config from '../config';
 import Tremps from '../components/Tremps';
+import helpers from '../helpers';
 
 export default class MyTremps extends Component {
   constructor (props) {
@@ -18,15 +18,8 @@ export default class MyTremps extends Component {
     this.getTremps()
   }
 
-  getUserFromToken() {
-    let token = localStorage.getItem('token')
-    let userFromToken = jwt.verify(token, '1234')
-    console.log('userFromToken', userFromToken);
-    return userFromToken
-  }
-
   getTremps() {
-    let userFromToken = this.getUserFromToken()
+    let userFromToken = helpers.getUserFromToken()
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
     axios.get(`${config.BASE_URL}/tremps/${userFromToken._id}`)
@@ -43,6 +36,8 @@ export default class MyTremps extends Component {
   render() {
     return (<div style={{ marginTop: '7%', marginBottom: '10%' }}>
       <Tremps data={this.state.tremps}
+        get={() => this.getTremps()}
+        buttons
         titleIfNoTremps={'טרמפ שתפרסם יוצג כאן.'} />
     </div>
     )

@@ -46,7 +46,6 @@ export default class RouterContainer extends Component {
 
   getTremps() {
     const { source, destination, date } = this.state
-    debugger
     axios.get(`${config.BASE_URL}/tremps`, {
       params: {
         source,
@@ -597,6 +596,7 @@ export default class RouterContainer extends Component {
 
       </form>
       <Tremps data={this.state.tremps}
+         get={() => this.getTremps()}
         titleIfNoTremps={'אנו מצטערים, אין טרמפ העונה לבקשתך.'} />
     </div>
 

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import axios from 'axios'
+import config from '../config';
+import helpers from '../helpers';
 export default class Tremps extends Component {
   constructor (props) {
     super(props);
@@ -18,14 +21,35 @@ export default class Tremps extends Component {
     this.setState({ selected: arr })
   }
 
-  renderTremps(tremps) {
+  deleteTremp(id) {
+    let { get } = this.props
+    let headers = { 'x-auth-token': localStorage.getItem('token') }
+    let user = helpers.getUserFromToken()
+    axios.delete(`${config.BASE_URL}/tremps/${id}`,
+      { headers, user: user._id }
+    )
+      .then((res) => {
+        get()
+      })
+      .catch(function (err) {
+        console.log(err.response);
+        // console.log(err.response.data);
+      })
+  }
+
+  renderTremps(tremps, buttons) {
     return tremps.map((tremp) => {
       const open = this.state.selected.indexOf(tremp._id) > -1
       return <div key={tremp._id}
         className={open ? 'is-open' : 'is-closed'}
-
       >
         <div className='up' style={{ height: open ? '20%' : '100%' }}>
+          {buttons && <button type='button'
+            style={{ width: '5%', color: 'black' }}
+            onClick={() => this.deleteTremp(tremp._id)}
+          >
+            X
+          </button>}
           <div style={{ width: '45%' }}>
             {tremp.source}
           </div>
@@ -35,7 +59,7 @@ export default class Tremps extends Component {
           {/* <div style={{ width: '20%' }}>
             {tremp.date}
           </div> */}
-          <div style={{ width: '10%' }} onClick={() => this.openTremp(tremp._id)}>
+          <div style={{ width: '5%', display: 'flex', justifyContent: 'flex-end' }} onClick={() => this.openTremp(tremp._id)}>
             <img
               style={{ width: 20, height: 20 }}
               alt={'arrow'}
@@ -65,6 +89,7 @@ export default class Tremps extends Component {
                 <div> <strong>שעה:</strong> <span>{moment(tremp.time).format('HH:mm')}</span></div>
                 <div> <strong>מחיר:</strong> <span>{tremp.participate}</span></div>
               </div>
+
             </div>
           </ div >
         }
@@ -75,7 +100,7 @@ export default class Tremps extends Component {
   }
 
   render() {
-    const { data, titleIfNoTremps } = this.props
+    const { data, titleIfNoTremps, buttons } = this.props
     return (
       <div id='big-div-table' >
         <div id='head'>
@@ -93,7 +118,7 @@ export default class Tremps extends Component {
         {
           data.length === 0
             ? <div>{titleIfNoTremps}</div>
-            : this.renderTremps(data)
+            : this.renderTremps(data, buttons)
         }
       </div>
     )

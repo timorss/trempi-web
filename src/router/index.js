@@ -15,7 +15,7 @@ import About from '../screens/About'
 import Error from '../components/Error'
 import Navigation from '../components/Navigation'
 import SecondNavigation from '../components/SecondNavigation'
-import TrempiFooter from '../components/TrempiFooter'
+// import TrempiFooter from '../components/TrempiFooter'
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
 import { createBrowserHistory } from 'history';
@@ -160,7 +160,7 @@ class RouterContainer extends Component {
             <PrivateRoute path='/adv' component={Adv} />
             <Route component={Error} />
           </Switch>
-          <TrempiFooter />
+          {/* <TrempiFooter /> */}
         </div>
       </Router>
     )
