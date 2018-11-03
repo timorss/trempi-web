@@ -19,8 +19,7 @@
   .panel-body:after,
   .panel-body:before,
   .row:after,
-  .row:before 
-  {
+  .row:before {
     display: table;
     content: none;
   }
@@ -50,6 +49,14 @@
     transition: width 1s, background-color 1s;
     -moz-transition: width 1s, background-color 1s;
     -o-transition: width 1s, background-color 1s;
+  }
+  .navCol .li:visited {
+    /* width: 35%; */
+    background: purple;
+  }
+  .navCol .li:active {
+    /* width: 35%; */
+    background: yellow;
   }
   .navCol .li:hover {
     /* width: 35%; */
@@ -99,9 +106,10 @@
     margin-right: 0.8em;
     color: green;
   }
-  .search-adv-form img {
+  .search-adv-form .big-car {
+    display: none;
     position: absolute;
-    top: 70px;
+    top: 20%;
     left: 10px;
     width: 30%;
     /* height: 25px; */
@@ -182,6 +190,7 @@
   .down-inside {
     display: flex;
     flex-direction: row;
+    position: relative;
     padding-left: 20;
     padding-right: 20;
   }
@@ -204,7 +213,10 @@
     margin-bottom: 0.3em;
   }
   .search-adv-form .clear-button {
-    background: #CC5153;
+    margin-right: 5px;
+    background: transparent;
+    border: none;
+    display: inline-flex;
     width: 20px;
     height: 20px;
   }
@@ -228,9 +240,21 @@
   .react-datepicker__input-container {
     margin: 0 !important;
   }
+  .fb-button {
+    display: inline-flex;
+    flex-direction: row;
+    background: rgb(59, 89, 152);
+    color: white;
+    width: 200px;
+    margin-top: 4px;
+    justify-content: center;
+  }
 }
 
 @media screen and (min-width: 400px) {
+  .search-adv-form .big-car {
+    display: block;
+  }
   .details-inside {
     margin-left: 55px;
   }
@@ -256,7 +280,7 @@
   .search-adv-form select {
     font-size: 0.8em;
   }
-  .search-adv-form img {
+  .search-adv-form .big-car {
     display: block;
     position: absolute;
     top: 10%;

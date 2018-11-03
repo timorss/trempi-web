@@ -44,12 +44,6 @@ export default class Tremps extends Component {
         className={open ? 'is-open' : 'is-closed'}
       >
         <div className='up' style={{ height: open ? '20%' : '100%' }}>
-          {buttons && <button type='button'
-            style={{ width: '5%', color: 'black' }}
-            onClick={() => this.deleteTremp(tremp._id)}
-          >
-            X
-          </button>}
           <div style={{ width: '45%' }}>
             {tremp.source}
           </div>
@@ -89,7 +83,12 @@ export default class Tremps extends Component {
                 <div> <strong>שעה:</strong> <span>{moment(tremp.time).format('HH:mm')}</span></div>
                 <div> <strong>מחיר:</strong> <span>{tremp.participate}</span></div>
               </div>
-
+              {buttons && <button type='button' class="btn btn-primary btn-xs"
+                style={{ width: 20, display: 'flex', justifyContent: 'center',position:'absolute', bottom: 0, left: 10}}
+                onClick={() => this.deleteTremp(tremp._id)}
+              >
+                <img src={require('../images/bin.png')} alt='delete' style={{ width: 15, height: 15 }} />
+              </button>}
             </div>
           </ div >
         }

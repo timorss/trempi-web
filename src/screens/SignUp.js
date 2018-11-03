@@ -25,11 +25,13 @@ class SignUp extends Component {
   }
 
   onChangeEmail(event) {
-    this.setState({ email: event.target.value })
+    const value = event.target.value.toLowerCase()
+    this.setState({ email: value })
   }
 
   onChangePassword(event) {
-    this.setState({ password: event.target.value })
+    const value = event.target.value.toLowerCase()
+    this.setState({ password: value })
   }
 
   getUsers() {
@@ -95,7 +97,7 @@ class SignUp extends Component {
               <input type="password"
                 className="form-control"
                 id="exampleInputPassword1"
-                placeholder="Password"
+                placeholder="סיסמה"
                 value={password}
                 onChange={this.onChangePassword} />
             </div>

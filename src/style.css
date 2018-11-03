@@ -65,9 +65,9 @@ footer:hover div {
   /* line-height: 1.5em; */
   border-bottom: 0.1em solid #b1b6ff;
   /* width: 100%; */
-  transition: height 1s;
+  /* transition: height 1s;
   -moz-transition: height 1s;
-  -webkit-transition: height 1s;
+  -webkit-transition: height 1s; */
 }
 
 .is-closed:hover {
@@ -82,9 +82,9 @@ footer:hover div {
   line-height: 1.5em;
   border-bottom: 0.1em solid #b1b6ff;
   color: white;
-  -webkit-transition: height 1s;
+  /* -webkit-transition: height 1s;
   transition: height 1s;
-  -moz-transition: height 1s;
+  -moz-transition: height 1s; */
 }
 
 div span {
@@ -119,9 +119,9 @@ div#instant-message {
   margin-bottom: 1.5em;
   line-height: 1.5em;
   background-color: #ccc;
-  width: 60%;
+  width: 85%;
   font-family: Arial;
-  font-size: 1.5em;
+  font-size: 1em;
   text-align: right;
   -webkit-box-shadow: rgb(110, 110, 110) 10px 10px 10px;
 }

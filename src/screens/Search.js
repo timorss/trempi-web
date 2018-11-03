@@ -64,6 +64,7 @@ export default class RouterContainer extends Component {
   }
 
   handleChangeDate(date) {
+    debugger
     this.setState({ date }, () => this.getTremps());
   }
 
@@ -125,11 +126,11 @@ export default class RouterContainer extends Component {
   render() {
     return (<div style={{ marginBottom: '10%' }}>
       <form className="search-adv-form">
-        <img src={require('../images/car4.png')} alt='car' />
+        <img src={require('../images/car4.png')} alt='car' className='big-car' />
         <p>
           <strong>סטודנטים, </strong>ניתן לחפש במוצא וביעד גם לפי מוסדות לימוד!
         </p>
-        <div>
+        <div style={{}}>
           <label>מוצא:</label>
           <select
             id="src"
@@ -350,9 +351,11 @@ export default class RouterContainer extends Component {
               <option value="שנקר"> שנקר - הנדסה ולעיצוב </option>
             </optgroup>
           </select>
-          <button type="button" className='clear-button'
+          {this.state.source.length > 0 && <button type="button" className='clear-button'
             onClick={() => this.clearField('source')}
-          />
+          >
+            <img src={require('../images/cancel.png')} alt='cancel' style={{ width: 16, height: 16 }} />
+          </button>}
         </div>
         <div>
           <label>יעד:</label>
@@ -574,9 +577,11 @@ export default class RouterContainer extends Component {
               <option value="שנקר"> שנקר - הנדסה ולעיצוב </option>
             </optgroup>
           </select>
-          <button type="button" className='clear-button'
+          {this.state.destination.length > 0 && <button type="button" className='clear-button'
             onClick={() => this.clearField('destination')}
-          />
+          >
+            <img src={require('../images/cancel.png')} alt='cancel' style={{ width: 16, height: 16 }} />
+          </button>}
         </div>
 
         <div className="date-time">
@@ -589,16 +594,19 @@ export default class RouterContainer extends Component {
             placeholderText="תאריך"
             minDate={moment()}
           />
-          <button type="button" className='clear-button'
+          {typeof this.state.date === 'object' && <button type="button" className='clear-button'
             onClick={() => this.clearField('date')}
-          />
+          >
+            <img src={require('../images/cancel.png')} alt='cancel' style={{ width: 16, height: 16 }} />
+          </button>}
+
         </div>
 
       </form>
       <Tremps data={this.state.tremps}
-         get={() => this.getTremps()}
+        get={() => this.getTremps()}
         titleIfNoTremps={'אנו מצטערים, אין טרמפ העונה לבקשתך.'} />
-    </div>
+    </div >
 
     )
   }

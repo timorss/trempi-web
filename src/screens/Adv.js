@@ -15,7 +15,7 @@ export default class RouterContainer extends Component {
       destination: '',
       date: moment(),
       time: moment(),
-      participate: '0',
+      price: '0',
       seats: '',
       details: '',
       show:false
@@ -59,12 +59,12 @@ exitModal(){
         console.log('destination', event.target.value);
         this.setState({ destination: event.target.value });
         break;
-      case 'participate':
-        console.log('participate', event.target.value);
-        this.setState({ participate: event.target.value });
+      case 'price':
+        console.log('price', event.target.value);
+        this.setState({ price: event.target.value });
         break;
       case 'radio':
-        this.setState({ participate: '0' });
+        this.setState({ price: '0' });
         break;
       case 'seats':
         console.log('seats', event.target.value);
@@ -88,14 +88,14 @@ exitModal(){
   }
 
   onRadioButtonChange() {
-    this.setState({ participate: '0' });
+    this.setState({ price: '0' });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     console.log('function works!');
     let userFromToken = this.getUserFromToken()
-    const { name, source, destination, date,time, participate, seats, phoneNumber, details, } = this.state
+    const { name, source, destination, date,time, price, seats, phoneNumber, details, } = this.state
     axios.post(`${config.BASE_URL}/tremps`, {
       name,
       source,
@@ -103,7 +103,7 @@ exitModal(){
       date: moment(date).format('DD/MM'),
       time,
       user: userFromToken._id,
-      participate,
+      price,
       seats,
       phoneNumber,
       details
@@ -124,7 +124,7 @@ exitModal(){
 
   render() {
     return (<form className="search-adv-form" onSubmit={this.handleSubmit}>
-      <img src={require('../images/car3.png')} alt='car' />
+      <img src={require('../images/car3.png')} alt='car' className='big-car' />
       <div>
         <label>מוצא:</label>
         <select
@@ -606,13 +606,13 @@ exitModal(){
       </div>
 
       <div>
-        <label>השתתפות:</label>
+        <label>מחיר:</label>
 
-        <input type="number" min={0} max={100} value={this.state.participate}
-          onChange={(event) => this.handleChange(event, 'participate')} />
+        <input type="number" min={0} max={100} value={this.state.price}
+          onChange={(event) => this.handleChange(event, 'price')} />
         ₪
 						<input type="radio" value={0}
-          checked={this.state.participate === '0'}
+          checked={this.state.price === '0'}
           onChange={(event) => this.handleChange(event, 'radio')} />
         <span>ללא</span>
       </div>
