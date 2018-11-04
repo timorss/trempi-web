@@ -166,12 +166,14 @@ class RouterContainer extends Component {
       return <div />
     } else {
       return <FacebookLogin
-        appId="555630241568464"
-        autoLoad={false}
-        fields="name,email,picture"
-        onClick={this.componentClicked}
-        callback={this.responseFacebook}
-        cssClass="my-facebook-button-class"
+      appId="555630241568464"
+      autoLoad={false}
+      fields="name,email,picture"
+      onClick={this.componentClicked}
+      callback={this.responseFacebook}
+      cssClass="my-facebook-button-class"
+      isMobile={true}
+      disableMobileRedirect={true}
         // icon="fa-facebook"
         render={renderProps => (
           <button className="btn btn-info fb-button"
