@@ -63,9 +63,9 @@ class RouterContainer extends Component {
     }
     this.onLogout = this.onLogout.bind(this)
   }
-  componentWillMount() {
-    localStorage.removeItem('token')
-  }
+  // componentWillMount() {
+  //   localStorage.removeItem('token')
+  // }
   
   onSignUp({ name, email, password, isAlreadySigned }) {
     let _this = this
@@ -184,8 +184,8 @@ class RouterContainer extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook}
         cssClass="my-facebook-button-class"
-        // isMobile={true}
-        // disableMobileRedirect={true}
+        isMobile={true}
+        disableMobileRedirect={true}
         // icon="fa-facebook"
         render={renderProps => (
           <button className="btn btn-info fb-button"
