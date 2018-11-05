@@ -63,7 +63,10 @@ class RouterContainer extends Component {
     }
     this.onLogout = this.onLogout.bind(this)
   }
-
+  componentWillMount() {
+    localStorage.removeItem('token')
+  }
+  
   onSignUp({ name, email, password, isAlreadySigned }) {
     let _this = this
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
@@ -114,7 +117,7 @@ class RouterContainer extends Component {
   renderTitle() {
     try {
       let token = localStorage.getItem('token')
-      let userFromToken = helpers.getUserFromToken()
+      let userFromToken = jwt.verify(token, '1234')
       console.log('userFromToken', userFromToken);
       if (token) {
         return `שלום ${userFromToken.name}`
@@ -124,7 +127,7 @@ class RouterContainer extends Component {
       }
     }
     catch (err) {
-      console.log('renderTitle error', err);
+      return 'ברוך הבא לטרמפי'
     }
   }
 
