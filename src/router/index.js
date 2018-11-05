@@ -4,6 +4,7 @@ import {
   //  NavLink, Link 
   //screens
 } from 'react-router-dom' // Redirect, withRouter 
+import jwt from 'jsonwebtoken'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 // import FacebookLogin from 'react-facebook-login'
 import Login from '../screens/Login'
@@ -112,13 +113,21 @@ class RouterContainer extends Component {
 
   renderTitle() {
     try {
+      let token = localStorage.getItem('token')
       let userFromToken = helpers.getUserFromToken()
       console.log('userFromToken', userFromToken);
-      return `שלום ${userFromToken.name}`
-    } catch (err) {
-      return 'ברוך הבא לטרמפי'
+      if (token) {
+        return `שלום ${userFromToken.name}`
+      }
+      else {
+        return 'ברוך הבא לטרמפי'
+      }
+    }
+    catch (err) {
+      console.log('renderTitle error', err);
     }
   }
+
   facebookLogin({ name, email, password: userID, image }) {
     let _this = this
     axios.post(`${config.BASE_URL}/auth/facebookLogin`, {
@@ -166,14 +175,14 @@ class RouterContainer extends Component {
       return <div />
     } else {
       return <FacebookLogin
-      appId="555630241568464"
-      autoLoad={false}
-      fields="name,email,picture"
-      onClick={this.componentClicked}
-      callback={this.responseFacebook}
-      cssClass="my-facebook-button-class"
-      // isMobile={true}
-      // disableMobileRedirect={true}
+        appId="555630241568464"
+        autoLoad={false}
+        fields="name,email,picture"
+        onClick={this.componentClicked}
+        callback={this.responseFacebook}
+        cssClass="my-facebook-button-class"
+        // isMobile={true}
+        // disableMobileRedirect={true}
         // icon="fa-facebook"
         render={renderProps => (
           <button className="btn btn-info fb-button"
