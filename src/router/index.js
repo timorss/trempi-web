@@ -184,8 +184,8 @@ class RouterContainer extends Component {
         onClick={this.componentClicked}
         callback={this.responseFacebook}
         cssClass="my-facebook-button-class"
-        isMobile={true}
-        disableMobileRedirect={true}
+        // isMobile={true}
+        // disableMobileRedirect={true}
         // icon="fa-facebook"
         render={renderProps => (
           <button className="btn btn-info fb-button"
