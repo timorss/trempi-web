@@ -79,14 +79,11 @@
     color: white;
   }
   .search-adv-form {
-    font-size: 1em;
-  }
-  .search-adv-form {
     position: relative;
     display: inline-block;
     margin-top: 0.5em;
     margin-bottom: 1.5em;
-    padding: 0.2em 0;
+    padding: 0.2em 0.5em;
     font-size: 1.4em;
     font-weight: bold;
     text-align: right;
@@ -124,9 +121,9 @@
     font-size: 0.7em;
   }
   .search-adv-form div label {
-    width: 4em;
+    width: 3em;
     /* float: left; */
-    text-align: left;
+    /* text-align: left; */
     clear: right;
     margin-left: 0.6em;
   }
@@ -219,6 +216,19 @@
     display: inline-flex;
     width: 20px;
     height: 20px;
+  }
+  .search-adv-form .clear-all-Fields {
+   margin-right: 5px;
+    background: transparent;
+    border: none;
+    display: inline-flex;
+  padding: 5px 5px;
+  outline: none;
+    /* width: 20px;
+    height: 20px;  */
+  }
+  .clear-all-Fields-text{
+    font-size: 0.7em;
   }
   #advTextarea {
     text-align: right;

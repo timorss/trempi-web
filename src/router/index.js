@@ -46,7 +46,7 @@ const PrivateRouteRender = ({ render: Component, ...rest }) => {
 }
 
 class RouterContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
@@ -66,7 +66,7 @@ class RouterContainer extends Component {
   // componentWillMount() {
   //   localStorage.removeItem('token')
   // }
-  
+
   onSignUp({ name, email, password, isAlreadySigned }) {
     let _this = this
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
@@ -78,8 +78,10 @@ class RouterContainer extends Component {
     })
       .then((res) => {
         console.log('user is: ', res.data);
-        history.push('/login')
         _this.setState({ error: '' })
+        localStorage.setItem('token', res.data)
+        this.setState({ loggedIn: true })
+        history.push('/search')
       })
       .catch(function (err) {
         console.log(err.response.data);

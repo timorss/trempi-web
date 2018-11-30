@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import config from '../config';
 class SignUp extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       users: [],
       name: '',
       email: '',
-      password: ''
+      password: '',
+      confirmPassword: '',
+      errorFromClient: ''
     }
     this.onChangeName = this.onChangeName.bind(this)
     this.onChangeEmail = this.onChangeEmail.bind(this)
@@ -30,8 +32,9 @@ class SignUp extends Component {
   }
 
   onChangePassword(event) {
+    debugger
     const value = event.target.value.toLowerCase()
-    this.setState({ password: value })
+    this.setState({ [event.target.id]: value })
   }
 
   getUsers() {
@@ -48,7 +51,14 @@ class SignUp extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onSignUp(this.state)
+    const { password, confirmPassword } = this.state
+    if (password !== confirmPassword) {
+      this.setState({
+        errorFromClient: "passwords don't match"
+      })
+    } else {
+      this.props.onSignUp(this.state)
+    }
   }
 
   renderUsers(users) {
@@ -62,7 +72,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { name, email, password } = this.state
+    const { name, email, password, confirmPassword, errorFromClient } = this.state
     const { error } = this.props
     return (
       <div className="App" >
@@ -96,9 +106,17 @@ class SignUp extends Component {
             <div className="form-group">
               <input type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password"
                 placeholder="סיסמה"
                 value={password}
+                onChange={this.onChangePassword} />
+            </div>
+            <div className="form-group">
+              <input type="password"
+                className="form-control"
+                id="confirmPassword"
+                placeholder="אימות סיסמה"
+                value={confirmPassword}
                 onChange={this.onChangePassword} />
             </div>
 
@@ -107,7 +125,7 @@ class SignUp extends Component {
             {/* <input type="text" placeholder="סיסמה" /> */}
             <button type="submit" className="btn btn-info">הירשם</button>
           </form>
-          <div>{error}</div>
+          <div style={{ color: 'red' }}>{errorFromClient || error}</div>
         </div>
 
 

@@ -7,15 +7,14 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 require('moment/locale/he');
 export default class RouterContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       tremps: [],
       source: '',
       destination: '',
-      participate: '0',
       date: '',
-      seats: '',
+
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -63,11 +62,6 @@ export default class RouterContainer extends Component {
       })
   }
 
-  handleChangeDate(date) {
-    debugger
-    this.setState({ date }, () => this.getTremps());
-  }
-
   clearField(name) {
     switch (name) {
       case 'source':
@@ -83,6 +77,13 @@ export default class RouterContainer extends Component {
         break;
     }
   }
+  clearAllFields() {
+    this.setState({
+      source: '',
+      destination: '',
+      date: ''
+    }, () => this.getTremps())
+  }
 
   handleChange(event, name) {
     switch (name) {
@@ -94,34 +95,15 @@ export default class RouterContainer extends Component {
         console.log('destination', event.target.value);
         this.setState({ destination: event.target.value }, () => this.getTremps());
         break;
-      case 'participate':
-        console.log('participate', event.target.value);
-        this.setState({ participate: event.target.value });
-        break;
-      case 'radio':
-        this.setState({ participate: '0' });
-        break;
-      case 'seats':
-        console.log('hour', event.target.value);
-        this.setState({ hour: event.target.value });
-        break;
-      case 'name':
-        console.log('name', event.target.value);
-        this.setState({ name: event.target.value });
-        break;
-      case 'phone':
-        console.log('phone', event.target.value);
-        this.setState({ phone: event.target.value });
-        break;
-      case 'textArea':
-        console.log('textArea', event.target.value);
-        this.setState({ textArea: event.target.value });
-        break;
       default:
         break;
     }
   }
 
+  handleChangeDate(date) {
+    debugger
+    this.setState({ date }, () => this.getTremps());
+  }
 
   render() {
     return (<div style={{ marginBottom: '10%' }}>
@@ -601,6 +583,14 @@ export default class RouterContainer extends Component {
           </button>}
 
         </div>
+        {/* <div className="date-time"> */}
+        <button type="button" className='clear-all-Fields'
+          onClick={() => this.clearAllFields()}
+        >
+          <div className='clear-all-Fields-text'>נקה שדות</div>
+        </button>
+
+        {/* </div> */}
 
       </form>
       <Tremps data={this.state.tremps}
