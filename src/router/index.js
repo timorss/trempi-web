@@ -177,6 +177,16 @@ class RouterContainer extends Component {
 
   handleResponse = (data) => {
     console.log('data from fb',data);
+    this.setState({
+      facebook: {
+        name: data.profile.name,
+        image: data.profile.picture.data.url,
+        userID: data.profile.id,
+        email: data.profile.email
+      }
+    })
+    const { name, email, userID, image } = this.state.facebook
+    this.facebookLogin({ name, email, password: userID, image })
   }
 
   handleError = (error) => {
