@@ -176,7 +176,7 @@ class RouterContainer extends Component {
   }
 
   handleResponse = (data) => {
-    console.log('data from fb',data);
+    console.log('data from fb', data);
     this.setState({
       facebook: {
         name: data.profile.name,
@@ -190,7 +190,7 @@ class RouterContainer extends Component {
   }
 
   handleError = (error) => {
-    console.log('data from fb',error);
+    console.log('data from fb', error);
     this.setState({ error });
   }
 
@@ -266,7 +266,10 @@ class RouterContainer extends Component {
               )} />
             <Route
               path={'/signUp'}
-              render={() => <SignUp error={this.state.error} onSignUp={(values) => this.onSignUp(values)} />}
+              render={() =>
+                localStorage.getItem('token')
+                  ? <Redirect to='/search' />
+                  : <SignUp error={this.state.error} onSignUp={(values) => this.onSignUp(values)} />}
             // render={(props) => (
             //   this.state.signedUp
             //     ? <Redirect to='/login' />
@@ -275,7 +278,11 @@ class RouterContainer extends Component {
             />
             <Route
               path='/login'
-              render={() => <Login error={this.state.error} onLogin={(values) => this.onLogin(values)} />} />
+              render={() =>
+                localStorage.getItem('token')
+                  ? <Redirect to='/search' />
+                  : <Login error={this.state.error} onLogin={(values) => this.onLogin(values)} />
+              } />
             {/* <PrivateRoute path='/tremps' component={Tremps} /> */}
             <PrivateRoute path='/MyTremps' component={MyTremps} />
             <PrivateRoute path='/contact' component={Contact} />
