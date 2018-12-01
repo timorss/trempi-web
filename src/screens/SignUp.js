@@ -19,6 +19,7 @@ class SignUp extends Component {
   }
 
   componentWillMount() {
+    localStorage.removeItem('token')
     this.getUsers()
   }
 
