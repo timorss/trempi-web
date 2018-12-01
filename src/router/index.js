@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom' // Redirect, withRouter 
 import jwt from 'jsonwebtoken'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import { FacebookProvider, LoginButton } from 'react-facebook';
 // import FacebookLogin from 'react-facebook-login'
 import Login from '../screens/Login'
 import SignUp from '../screens/SignUp'
@@ -174,33 +175,52 @@ class RouterContainer extends Component {
     console.log('fb button clicked');
   }
 
+  handleResponse = (data) => {
+    console.log('data from fb',data);
+  }
+
+  handleError = (error) => {
+    console.log('data from fb',error);
+    this.setState({ error });
+  }
+
+
   renderFb() {
     let token = localStorage.getItem('token')
     if (token) {
       return <div />
     } else {
-      return <FacebookLogin
-        appId="555630241568464"
-        autoLoad={false}
-        fields="name,email,picture"
-        onClick={this.componentClicked}
-        callback={this.responseFacebook}
-        cssClass="my-facebook-button-class"
-        isMobile={true}
-        disableMobileRedirect={true}
-        // icon="fa-facebook"
-        render={renderProps => (
-          <button className="btn btn-info fb-button"
-            style={{
-              display: 'inline-flex', flexDirection: 'row', background: '#3b5998', color: 'white', width: 200,
-              marginTop: 4, justifyContent: 'center'
-            }}
-            onClick={renderProps.onClick}>
-            <h5 style={{ marginLeft: 3 }}>התחבר דרך</h5>
-            <img src={require('../images/facebook-icon.png')} alt={'fb'}
-              style={{ height: 30, width: 30 }} /></button>
-        )}
-      />
+      // return <FacebookLogin
+      //   appId="555630241568464"
+      //   autoLoad={false}
+      //   fields="name,email,picture"
+      //   onClick={this.componentClicked}
+      //   callback={this.responseFacebook}
+      //   cssClass="my-facebook-button-class"
+      //   isMobile={true}
+      //   disableMobileRedirect={true}
+      //   // icon="fa-facebook"
+      //   render={renderProps => (
+      //     <button className="btn btn-info fb-button"
+      //       style={{
+      //         display: 'inline-flex', flexDirection: 'row', background: '#3b5998', color: 'white', width: 200,
+      //         marginTop: 4, justifyContent: 'center'
+      //       }}
+      //       onClick={renderProps.onClick}>
+      //       <h5 style={{ marginLeft: 3 }}>התחבר דרך</h5>
+      //       <img src={require('../images/facebook-icon.png')} alt={'fb'}
+      //         style={{ height: 30, width: 30 }} /></button>
+      //   )}
+      // />
+      return <FacebookProvider appId="555630241568464">
+        <LoginButton
+          scope="email"
+          onCompleted={this.handleResponse}
+          onError={this.handleError}
+        >
+          <span>Login via Facebook</span>
+        </LoginButton>
+      </FacebookProvider>
     }
   }
 
