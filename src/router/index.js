@@ -268,7 +268,7 @@ class RouterContainer extends Component {
               path={'/signUp'}
               render={() =>
                 localStorage.getItem('token')
-                  ? <Redirect to='/search' />
+                  ? null
                   : <SignUp error={this.state.error} onSignUp={(values) => this.onSignUp(values)} />}
             // render={(props) => (
             //   this.state.signedUp
@@ -280,9 +280,8 @@ class RouterContainer extends Component {
               path='/login'
               render={() =>
                 localStorage.getItem('token')
-                  ? <Redirect to='/search' />
-                  : <Login error={this.state.error} onLogin={(values) => this.onLogin(values)} />
-              } />
+                  ? null
+                  : <Login error={this.state.error} onLogin={(values) => this.onLogin(values)} />} />
             {/* <PrivateRoute path='/tremps' component={Tremps} /> */}
             <PrivateRoute path='/MyTremps' component={MyTremps} />
             <PrivateRoute path='/contact' component={Contact} />
