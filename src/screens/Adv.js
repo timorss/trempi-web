@@ -27,7 +27,6 @@ export default class RouterContainer extends Component {
 
   getUserFromToken() {
     let userFromToken = jwt.verify(localStorage.getItem('token'), '1234')
-    console.log('userFromToken', userFromToken);
     this.setState({ user: userFromToken.email });
     return userFromToken
   }

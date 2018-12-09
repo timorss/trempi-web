@@ -151,3 +151,12 @@ div#about h3 {
 #Clip-arts {
   margin-top: 1em;
 }
+
+.my-tremp{
+  background: #d69f3a;
+}
+
+.chat-menu{
+  display: flex;
+  margin-right: 10px;
+}

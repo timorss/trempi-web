@@ -4,11 +4,12 @@ import axios from 'axios'
 import config from '../config';
 import helpers from '../helpers';
 export default class Tremps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       selected: [],
     }
+
   }
 
   openTremp(id) {
@@ -20,6 +21,9 @@ export default class Tremps extends Component {
     }
     this.setState({ selected: arr })
   }
+
+
+
 
   deleteTremp(id) {
     let { get } = this.props
@@ -38,12 +42,15 @@ export default class Tremps extends Component {
   }
 
   renderTremps(tremps, buttons) {
+    const { clickMessage } = this.props
     return tremps.map((tremp) => {
       const open = this.state.selected.indexOf(tremp._id) > -1
-      return <div key={tremp._id}
-        className={open ? 'is-open' : 'is-closed'}
+      const user = helpers.getUserFromToken()
+      const myTremp = tremp.user._id === user._id
+      return < div key={tremp._id}
+        className={`${open ? 'is-open' : 'is-closed'} ${myTremp ? 'my-tremp' : null}`}
       >
-        <div className='up' style={{ height: open ? '20%' : '100%' }}>
+        <div className='up' style={{ height: open ? '20%' : '100%' }} onClick={() => this.openTremp(tremp._id)}>
           <div style={{ width: '45%' }}>
             {tremp.source}
           </div>
@@ -53,7 +60,7 @@ export default class Tremps extends Component {
           {/* <div style={{ width: '20%' }}>
             {tremp.date}
           </div> */}
-          <div style={{ width: '5%', display: 'flex', justifyContent: 'flex-end' }} onClick={() => this.openTremp(tremp._id)}>
+          <div style={{ width: '5%', display: 'flex', justifyContent: 'flex-end' }} >
             <img
               style={{ width: 20, height: 20 }}
               alt={'arrow'}
@@ -61,7 +68,8 @@ export default class Tremps extends Component {
           </div>
         </div>
 
-        {this.state.selected.indexOf(tremp._id) > -1
+        {
+          this.state.selected.indexOf(tremp._id) > -1
           && <div className='down'>
             <div className='down-inside'>
               <div className='details-inside'>
@@ -83,11 +91,17 @@ export default class Tremps extends Component {
                 <div> <strong>שעה:</strong> <span>{moment(tremp.time).format('HH:mm')}</span></div>
                 <div> <strong>מחיר:</strong> <span>{tremp.participate}</span></div>
               </div>
-              {buttons && <button type='button' class="btn btn-primary btn-xs"
-                style={{ width: 20, display: 'flex', justifyContent: 'center',position:'absolute', bottom: 0, left: 10}}
+              {buttons && <button type='button' className="btn btn-primary btn-xs"
+                style={{ width: 20, display: 'flex', justifyContent: 'center', position: 'absolute', bottom: 0, left: 10 }}
                 onClick={() => this.deleteTremp(tremp._id)}
               >
                 <img src={require('../images/bin.png')} alt='delete' style={{ width: 15, height: 15 }} />
+              </button>}
+              {!myTremp && <button type='button' className="btn btn-primary btn-xs"
+                style={{ width: 20, display: 'flex', justifyContent: 'center', position: 'absolute', bottom: 0, left: 10 }}
+                onClick={() => clickMessage(tremp)}
+              >
+                <img src={require('../images/downArrow.png')} alt='message' style={{ width: 15, height: 15 }} />
               </button>}
             </div>
           </ div >
@@ -97,6 +111,7 @@ export default class Tremps extends Component {
     })
 
   }
+
 
   render() {
     const { data, titleIfNoTremps, buttons } = this.props
