@@ -113,7 +113,7 @@ class RouterContainer extends Component {
 
 
   async sendMessage(message) {
-    const { conversation } = this.state
+    const { conversation, tremp } = this.state
     // console.log('function works!');
     let userFromToken = helpers.getUserFromToken()
 
@@ -127,7 +127,8 @@ class RouterContainer extends Component {
           type: message.type,
           data: { [message.type]: message.data[message.type] }
         },
-        user: userFromToken._id
+        user: userFromToken._id,
+        tremp
       }
       )
       let _message = res.data
@@ -172,6 +173,7 @@ class RouterContainer extends Component {
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     debugger
+ 
     try {
       const res = await axios.get(`${config.BASE_URL}/conversations`, {
         params: {
@@ -183,8 +185,9 @@ class RouterContainer extends Component {
         { headers: { 'x-auth-token': localStorage.getItem('token') } }
       )
       let conversations = res.data
-      console.log('conversation is: ', conversations[0]);
-      this.setState({ conversation: conversations[0] }, () => this.getMessageList())
+      debugger
+      console.log('conversation is: ', conversations);
+      this.setState({ conversation: conversations}, () => this.getMessageList())
     } catch (err) {
       debugger
       console.log(err.response);
