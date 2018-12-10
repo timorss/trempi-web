@@ -31,7 +31,7 @@ import config from '../config';
 import '../style.css';
 import '../media_screen.css';
 import '../datePicker.css';
-// let userFromToken = helpers.getUserFromToken()
+
 const history = createBrowserHistory()
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -410,11 +410,11 @@ class RouterContainer extends Component {
             logout={this.onLogout}
             FbLoggedIn={FbLoggedIn}
           />
-          <PrivateRouteRender render={() => <ChatMenu
+          {localStorage.getItem('token') && <ChatMenu
             conversations={this.state.conversations}
             getConversations={this.getConversations}
             clickOnConversation={this.clickOnConversation}
-          />} />
+          />}
 
 
           <h2 style={{ marginTop: '10%' }}>
