@@ -90,10 +90,9 @@ class RouterContainer extends Component {
       })
       const messageList = res.data
       console.log('messageList is', messageList);
-      // format the message to be in the chat fotmat
+      // format the message to be in the chat format
       const formattedmMessageList = messageList.map((data) => {
         const { message } = data
-        debugger
         return {
           author: message.author,
           type: message.type,
@@ -129,8 +128,7 @@ class RouterContainer extends Component {
           data: { [message.type]: message.data[message.type] }
         },
         user: userFromToken._id
-      },
-        { headers: { 'x-auth-token': localStorage.getItem('token') } }
+      }
       )
       let _message = res.data
       console.log('message is: ', _message);
@@ -159,9 +157,7 @@ class RouterContainer extends Component {
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     try {
-      const res = await axios.get(`${config.BASE_URL}/conversations/${userFromToken._id}`,
-        { headers: { 'x-auth-token': localStorage.getItem('token') } }
-      )
+      const res = await axios.get(`${config.BASE_URL}/conversations/${userFromToken._id}`)
       let conversations = res.data
       console.log('conversations are: ', conversations);
       debugger
@@ -231,7 +227,7 @@ class RouterContainer extends Component {
 
 
 
-  onSignUp({ name, email, password, isAlreadySigned }) {
+  onSignUp({ name, email, password }) {
     let _this = this
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
