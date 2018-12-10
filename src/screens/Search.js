@@ -4,10 +4,8 @@ import axios from 'axios'
 import config from '../config';
 import moment from 'moment';
 import SearchForm from '../components/SearchForm';
-import Chat from '../components/Chat';
-import helpers from '../helpers';
 export default class RouterContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       tremps: [],
@@ -108,10 +106,7 @@ export default class RouterContainer extends Component {
     const {
       source,
       destination,
-      date,
-      showChat,
-      tremp,
-      messageList } = this.state
+      date } = this.state
     const { clickMessage } = this.props
     return (<div style={{ marginBottom: '10%' }}>
       <SearchForm

@@ -25,7 +25,7 @@ import Chat from '../components/Chat';
 import axios from 'axios'
 // import jwt from 'jsonwebtoken'
 import { createBrowserHistory } from 'history';
-import { getMessageList } from '../helpers/chatHelpers'
+// import { getMessageList } from '../helpers/chatHelpers'
 import helpers from '../helpers'
 import config from '../config';
 import '../style.css';
@@ -399,7 +399,6 @@ class RouterContainer extends Component {
 
 
   render() {
-    const { tremp } = this.state
     const { FbLoggedIn } = this.state.facebook
     return (
       <Router history={history}>

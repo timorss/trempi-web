@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import config from '../config';
 import helpers from '../helpers';
-import Chat from '../components/Chat';
-
 export default class ChatMenu extends Component {
   renderConversations(conversations) {
     const { clickOnConversation } = this.props
