@@ -50,7 +50,7 @@ const PrivateRouteRender = ({ render: Component, ...rest }) => {
 }
 
 class RouterContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       loggedIn: false,
@@ -173,7 +173,7 @@ class RouterContainer extends Component {
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     debugger
- 
+
     try {
       const res = await axios.get(`${config.BASE_URL}/conversations`, {
         params: {
@@ -186,8 +186,8 @@ class RouterContainer extends Component {
       )
       let conversations = res.data
       debugger
-      console.log('conversation is: ', conversations);
-      this.setState({ conversation: conversations}, () => this.getMessageList())
+      console.log('conversation is: ', conversations[0]);
+      this.setState({ conversation: conversations[0] }, () => this.getMessageList())
     } catch (err) {
       debugger
       console.log(err.response);
