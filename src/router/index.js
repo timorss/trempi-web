@@ -116,14 +116,14 @@ class RouterContainer extends Component {
     const { conversation, tremp } = this.state
     // console.log('function works!');
     let userFromToken = helpers.getUserFromToken()
-
+    const sender = conversation.tremp.user === userFromToken._id ? 'me' : 'them'
     try {
 
       // const { name, source, destination, date, time, price, seats, phoneNumber, details, } = this.state
       const res = await axios.post(`${config.BASE_URL}/messages`, {
         conversationId: conversation._id,
         message: {
-          author: 'me',
+          author: sender,
           type: message.type,
           data: { [message.type]: message.data[message.type] }
         },
