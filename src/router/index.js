@@ -184,10 +184,11 @@ class RouterContainer extends Component {
       },
         { headers: { 'x-auth-token': localStorage.getItem('token') } }
       )
-      let conversations = res.data
+      let conversation = res.data
       debugger
-      console.log('conversation is: ', conversations[0]);
-      this.setState({ conversation: conversations[0] }, () => this.getMessageList())
+      console.log(' conversations[0]: ', conversation[0]);
+      console.log(' conversations: ', conversation);
+      this.setState({ conversation: conversation[0] || conversation }, () => this.getMessageList())
     } catch (err) {
       debugger
       console.log(err.response);
