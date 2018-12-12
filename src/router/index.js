@@ -59,6 +59,9 @@ class RouterContainer extends Component {
       user: {},
       showChat: false,
       messageList: [],
+      chatName: '',
+      conversations: [],
+      conversation: '',
       facebook: {
         FbLoggedIn: false,
         name: '',
@@ -185,10 +188,10 @@ class RouterContainer extends Component {
         { headers: { 'x-auth-token': localStorage.getItem('token') } }
       )
       let conversation = res.data
-      debugger
-      console.log(' conversations[0]: ', conversation[0]);
-      console.log(' conversations: ', conversation);
-      this.setState({ conversation: conversation[0] || conversation }, () => this.getMessageList())
+      console.log(' conversation: ', conversation);
+      this.setState({ conversation }, () => {
+        this.getMessageList()
+      })
     } catch (err) {
       debugger
       console.log(err.response);
@@ -397,6 +400,31 @@ class RouterContainer extends Component {
     }
   }
 
+  renderChatName() {
+    const { conversation, tremp } = this.state
+    const user1 = conversation && conversation.participants[0]
+    const user2 = conversation && conversation.participants[1]
+    console.log('user1', user1);
+    console.log('user2', user2);
+    console.log('tremp', tremp);
+    console.log('conversation', conversation);
+    debugger
+    if (conversation && tremp) {
+      const chatName = tremp.user._id === user1._id ? user1.name : user2.name
+      debugger
+      return chatName
+    }
+  }
+  renderChat() {
+    // console.log('user1', user1);
+    // console.log('user2', user2);
+    return <Chat isOpen={true}
+      messageList={this.state.messageList}
+      sendMessage={this.sendMessage}
+      handleClick={this.handleChatClick}
+      chatName={this.renderChatName()} />
+  }
+
 
   render() {
     const { FbLoggedIn } = this.state.facebook
@@ -462,11 +490,7 @@ class RouterContainer extends Component {
           </Switch>
           {this.renderFb()}
           {this.state.showChat
-            && <Chat isOpen={true}
-              messageList={this.state.messageList}
-              sendMessage={this.sendMessage}
-              handleClick={this.handleChatClick}
-              chatName={'after'} />}
+            && this.renderChat()}
         </div>
       </Router>
     )
