@@ -62,6 +62,7 @@ class RouterContainer extends Component {
       chatName: '',
       conversations: [],
       conversation: '',
+      chatConversationsOpen: false,
       facebook: {
         FbLoggedIn: false,
         name: '',
@@ -84,6 +85,7 @@ class RouterContainer extends Component {
 
   /*chat */
   async clickOnConversation(conversation) {
+    debugger
     // let userFromToken = helpers.getUserFromToken()
     try {
       const res = await axios.get(`${config.BASE_URL}/messages`, {
@@ -94,7 +96,7 @@ class RouterContainer extends Component {
       const messageList = res.data
       console.log('messageList is', messageList);
       // format the message to be in the chat format
-      const formattedmMessageList = messageList.map((data) => {
+      const formattedMessageList = messageList.map((data) => {
         const { message } = data
         return {
           author: message.author,
@@ -102,14 +104,17 @@ class RouterContainer extends Component {
           data: { [message.type]: message.data[message.type] }
         }
       })
+
+      debugger
       this.setState({
         conversation,
-        messageList: formattedmMessageList,
-        showChat: true
+        messageList: formattedMessageList,
+        showChat: true,
+        tremp: conversation.tremp
       })
     }
     catch (err) {
-      debugger
+
       console.log(err);
     }
   }
@@ -139,7 +144,7 @@ class RouterContainer extends Component {
       this.getMessageList()
 
     } catch (err) {
-      debugger
+
       console.log(err.response);
       // console.log(err.response.data);
     }
@@ -157,17 +162,20 @@ class RouterContainer extends Component {
     }, () => this.getConversation())
   }
   async getConversations() {
-    debugger
+
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     try {
       const res = await axios.get(`${config.BASE_URL}/conversations/${userFromToken._id}`)
       let conversations = res.data
       console.log('conversations are: ', conversations);
-      debugger
-      this.setState({ conversations })
+
+      this.setState({
+        conversations,
+        chatConversationsOpen: !this.state.chatConversationsOpen
+      })
     } catch (err) {
-      debugger
+
       console.log(err.response);
     }
   }
@@ -175,7 +183,7 @@ class RouterContainer extends Component {
     const { tremp } = this.state
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
-    debugger
+
 
     try {
       const res = await axios.get(`${config.BASE_URL}/conversations`, {
@@ -193,7 +201,7 @@ class RouterContainer extends Component {
         this.getMessageList()
       })
     } catch (err) {
-      debugger
+
       console.log(err.response);
     }
   }
@@ -201,20 +209,20 @@ class RouterContainer extends Component {
   async getMessageList() {
     const { conversation } = this.state
     // let userFromToken = helpers.getUserFromToken()
-    debugger
+
     try {
       const res = await axios.get(`${config.BASE_URL}/messages`, {
         params: {
           conversationId: conversation._id,
         }
       })
-      debugger
+
       const messageList = res.data
       console.log('messageList is', messageList);
       // format the message to be in the chat fotmat
       const formattedmMessageList = messageList.map((data) => {
         const { message } = data
-        debugger
+
         return {
           author: message.author,
           type: message.type,
@@ -224,7 +232,7 @@ class RouterContainer extends Component {
       this.setState({ messageList: formattedmMessageList })
     }
     catch (err) {
-      debugger
+
       console.log(err);
     }
   }
@@ -402,6 +410,9 @@ class RouterContainer extends Component {
 
   renderChatName() {
     const { conversation, tremp } = this.state
+    let userFromToken = helpers.getUserFromToken()
+    debugger
+    const participants = conversation && conversation.participants
     const user1 = conversation && conversation.participants[0]
     const user2 = conversation && conversation.participants[1]
     console.log('user1', user1);
@@ -410,14 +421,13 @@ class RouterContainer extends Component {
     console.log('conversation', conversation);
     debugger
     if (conversation && tremp) {
-      const chatName = tremp.user._id === user1._id ? user1.name : user2.name
-      debugger
-      return chatName
+      const parti = participants.find((parti, i) => {
+        return parti._id !== userFromToken._id
+      })
+      return parti.name
     }
   }
   renderChat() {
-    // console.log('user1', user1);
-    // console.log('user2', user2);
     return <Chat isOpen={true}
       messageList={this.state.messageList}
       sendMessage={this.sendMessage}
@@ -439,6 +449,7 @@ class RouterContainer extends Component {
             FbLoggedIn={FbLoggedIn}
           />
           {localStorage.getItem('token') && <ChatMenu
+            chatConversationsOpen={this.state.chatConversationsOpen}
             conversations={this.state.conversations}
             getConversations={this.getConversations}
             clickOnConversation={this.clickOnConversation}

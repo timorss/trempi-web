@@ -19,7 +19,7 @@ export default class ChatMenu extends Component {
   }
 
   render() {
-    const { conversations, getConversations } = this.props
+    const { conversations, getConversations, chatConversationsOpen } = this.props
     return (
       <div>
         <div className='chat-menu'>
@@ -27,7 +27,7 @@ export default class ChatMenu extends Component {
             chatMenu
         </button>
         </div>
-        <div>{this.renderConversations(conversations)}</div>
+        <div>{chatConversationsOpen && this.renderConversations(conversations)}</div>
       </div>
     )
   }

@@ -9,7 +9,6 @@ export default class Tremps extends Component {
     this.state = {
       selected: [],
     }
-
   }
 
   openTremp(id) {
@@ -21,9 +20,6 @@ export default class Tremps extends Component {
     }
     this.setState({ selected: arr })
   }
-
-
-
 
   deleteTremp(id) {
     let { get } = this.props
@@ -99,8 +95,7 @@ export default class Tremps extends Component {
               </button>}
               {!myTremp && <button type='button' className="btn btn-primary btn-xs"
                 style={{ width: 20, display: 'flex', justifyContent: 'center', position: 'absolute', bottom: 0, left: 10 }}
-                onClick={() => clickMessage(tremp)}
-              >
+                onClick={() => clickMessage(tremp)}>
                 <img src={require('../images/downArrow.png')} alt='message' style={{ width: 15, height: 15 }} />
               </button>}
             </div>
