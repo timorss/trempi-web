@@ -5,6 +5,7 @@ export default class ChatMenu extends Component {
     const { clickOnConversation } = this.props
     const userFromToken = helpers.getUserFromToken()._id
     return conversations && conversations.map((conv) => {
+      debugger
       const name = conv.participants[0]._id === userFromToken ? conv.participants[1].name : conv.participants[0].name
       return <button key={conv._id} style={{ background: 'lightgreen', marginBottom: 5 }}
         onClick={() => clickOnConversation(conv)}>

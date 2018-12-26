@@ -50,7 +50,7 @@ const PrivateRouteRender = ({ render: Component, ...rest }) => {
 }
 
 class RouterContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       loggedIn: false,
@@ -85,7 +85,7 @@ class RouterContainer extends Component {
 
   /*chat */
   async clickOnConversation(conversation) {
-    debugger
+
     // let userFromToken = helpers.getUserFromToken()
     try {
       const res = await axios.get(`${config.BASE_URL}/messages`, {
@@ -105,7 +105,7 @@ class RouterContainer extends Component {
         }
       })
 
-      debugger
+
       this.setState({
         conversation,
         messageList: formattedMessageList,
@@ -120,49 +120,73 @@ class RouterContainer extends Component {
   }
 
 
-  async sendMessage(message) {
-    const { conversation, tremp } = this.state
-    // console.log('function works!');
+  async postTheMessage(message) {
+    const { tremp, conversation } = this.state
     let userFromToken = helpers.getUserFromToken()
     const sender = conversation.tremp.user === userFromToken._id ? 'me' : 'them'
+    const res = await axios.post(`${config.BASE_URL}/messages`, {
+      conversationId: conversation._id,
+      message: {
+        author: sender,
+        type: message.type,
+        data: { [message.type]: message.data[message.type] }
+      },
+      user: userFromToken._id,
+      tremp
+    }
+    )
+    let _message = res.data
+    console.log('message is: ', _message);
+    this.getMessageList()
+  }
+
+  async sendMessage(message) {
+    const { tremp, conversation } = this.state
+    // console.log('function works!');
+    let userFromToken = helpers.getUserFromToken()
     try {
 
       // const { name, source, destination, date, time, price, seats, phoneNumber, details, } = this.state
-      const res = await axios.post(`${config.BASE_URL}/messages`, {
-        conversationId: conversation._id,
-        message: {
-          author: sender,
-          type: message.type,
-          data: { [message.type]: message.data[message.type] }
-        },
-        user: userFromToken._id,
-        tremp
+      if (!conversation) {
+
+        const conversationData = await axios.post(`${config.BASE_URL}/conversations`, {
+          user: userFromToken._id,
+          secondUser: tremp.user._id,
+          trempId: tremp._id
+        }
+        )
+        const res = await axios.get(`${config.BASE_URL}/conversations/${userFromToken._id}`)
+        let conversations = res.data
+
+        const conversation = conversationData.data
+        console.log('send message --conversation', conversation);
+        debugger
+        this.setState({ conversation, conversations }, () => this.postTheMessage(message))
+      } else {
+        this.postTheMessage(message)
       }
-      )
-      let _message = res.data
-      console.log('message is: ', _message);
-      this.getMessageList()
+
 
     } catch (err) {
-
       console.log(err.response);
       // console.log(err.response.data);
     }
   }
+
+
 
   handleChatClick() {
     this.setState({ showChat: false })
   }
 
   clickMessage(tremp) {
-    debugger
     this.setState({
       tremp,
       showChat: true
     }, () => this.getConversation())
   }
-  async getConversations() {
 
+  async getConversations() {
     console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     try {
@@ -186,6 +210,7 @@ class RouterContainer extends Component {
 
 
     try {
+      debugger
       const res = await axios.get(`${config.BASE_URL}/conversations`, {
         params: {
           user: userFromToken._id,
@@ -195,9 +220,12 @@ class RouterContainer extends Component {
       },
         { headers: { 'x-auth-token': localStorage.getItem('token') } }
       )
+      debugger
       let conversation = res.data
       console.log(' conversation: ', conversation);
+      debugger
       this.setState({ conversation }, () => {
+        debugger
         this.getMessageList()
       })
     } catch (err) {
@@ -209,7 +237,7 @@ class RouterContainer extends Component {
   async getMessageList() {
     const { conversation } = this.state
     // let userFromToken = helpers.getUserFromToken()
-
+    debugger
     try {
       const res = await axios.get(`${config.BASE_URL}/messages`, {
         params: {
@@ -229,7 +257,11 @@ class RouterContainer extends Component {
           data: { [message.type]: message.data[message.type] }
         }
       })
-      this.setState({ messageList: formattedmMessageList })
+      if (!conversation) {
+        this.setState({ messageList: [] })
+      } else {
+        this.setState({ messageList: formattedmMessageList })
+      }
     }
     catch (err) {
 
@@ -411,7 +443,7 @@ class RouterContainer extends Component {
   renderChatName() {
     const { conversation, tremp } = this.state
     let userFromToken = helpers.getUserFromToken()
-    debugger
+
     const participants = conversation && conversation.participants
     const user1 = conversation && conversation.participants[0]
     const user2 = conversation && conversation.participants[1]
@@ -419,12 +451,14 @@ class RouterContainer extends Component {
     console.log('user2', user2);
     console.log('tremp', tremp);
     console.log('conversation', conversation);
-    debugger
+
     if (conversation && tremp) {
       const parti = participants.find((parti, i) => {
         return parti._id !== userFromToken._id
       })
       return parti.name
+    } else {
+      return tremp.user.name
     }
   }
   renderChat() {
