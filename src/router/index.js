@@ -31,7 +31,8 @@ import config from '../config';
 import '../style.css';
 import '../media_screen.css';
 import '../datePicker.css';
-
+import _socket from 'socket.io-client';
+const socket = _socket.connect('http://localhost:3000')
 const history = createBrowserHistory()
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -82,35 +83,43 @@ class RouterContainer extends Component {
 
   }
 
+  componentWillUnmount() {
+
+  }
 
   /*chat */
   async clickOnConversation(conversation) {
 
     // let userFromToken = helpers.getUserFromToken()
     try {
-      const res = await axios.get(`${config.BASE_URL}/messages`, {
-        params: {
-          conversationId: conversation._id,
-        }
-      })
-      const messageList = res.data
-      console.log('messageList is', messageList);
-      // format the message to be in the chat format
-      const formattedMessageList = messageList.map((data) => {
-        const { message } = data
-        return {
-          author: message.author,
-          type: message.type,
-          data: { [message.type]: message.data[message.type] }
-        }
-      })
 
+
+      // const res = await axios.get(`${config.BASE_URL}/messages`, {
+      //   params: {
+      //     conversationId: conversation._id,
+      //   }
+      // })
+
+
+      // const messageList = res.data
+      // console.log('messageList is', messageList);
+      // // format the message to be in the chat format
+      // const formattedMessageList = messageList.map((data) => {
+      //   const { message } = data
+      //   return {
+      //     author: message.author,
+      //     type: message.type,
+      //     data: { [message.type]: message.data[message.type] }
+      //   }
+      // })
 
       this.setState({
         conversation,
-        messageList: formattedMessageList,
+        messageList: [],
         showChat: true,
         tremp: conversation.tremp
+      }, () => {
+        this.getMessageList()
       })
     }
     catch (err) {
@@ -124,7 +133,8 @@ class RouterContainer extends Component {
     const { tremp, conversation } = this.state
     let userFromToken = helpers.getUserFromToken()
     const sender = conversation.tremp.user === userFromToken._id ? 'me' : 'them'
-    const res = await axios.post(`${config.BASE_URL}/messages`, {
+
+    socket.emit('sendMessage', {
       conversationId: conversation._id,
       message: {
         author: sender,
@@ -133,11 +143,24 @@ class RouterContainer extends Component {
       },
       user: userFromToken._id,
       tremp
-    }
-    )
-    let _message = res.data
-    console.log('message is: ', _message);
-    this.getMessageList()
+    })
+
+
+    // const res = await axios.post(`${config.BASE_URL}/messages`, {
+    //   conversationId: conversation._id,
+    //   message: {
+    //     author: sender,
+    //     type: message.type,
+    //     data: { [message.type]: message.data[message.type] }
+    //   },
+    //   user: userFromToken._id,
+    //   tremp
+    // }
+    // )
+    // let _message = res.data
+    // console.log('message is: ', _message);
+    const fromSocket = true
+    this.getMessageList(fromSocket)
   }
 
   async sendMessage(message) {
@@ -160,7 +183,7 @@ class RouterContainer extends Component {
 
         const conversation = conversationData.data
         console.log('send message --conversation', conversation);
-        debugger
+
         this.setState({ conversation, conversations }, () => this.postTheMessage(message))
       } else {
         this.postTheMessage(message)
@@ -175,11 +198,16 @@ class RouterContainer extends Component {
 
 
 
-  handleChatClick() {
+  handleChatClick() { //leave room
+    console.log('u close');
+
+    const { conversation } = this.state
     this.setState({ showChat: false })
+    socket.emit('leaveRoom', conversation._id)
   }
 
   clickMessage(tremp) {
+
     this.setState({
       tremp,
       showChat: true
@@ -187,30 +215,28 @@ class RouterContainer extends Component {
   }
 
   async getConversations() {
-    console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
     try {
       const res = await axios.get(`${config.BASE_URL}/conversations/${userFromToken._id}`)
       let conversations = res.data
-      console.log('conversations are: ', conversations);
+      // console.log('conversations are: ', conversations);
+      console.log('conversations length are: ', conversations.length);
 
       this.setState({
         conversations,
         chatConversationsOpen: !this.state.chatConversationsOpen
       })
     } catch (err) {
-
       console.log(err.response);
     }
   }
+
   async getConversation() {
     const { tremp } = this.state
-    console.log('getConversation works!');
     let userFromToken = helpers.getUserFromToken()
 
-
     try {
-      debugger
+
       const res = await axios.get(`${config.BASE_URL}/conversations`, {
         params: {
           user: userFromToken._id,
@@ -220,12 +246,11 @@ class RouterContainer extends Component {
       },
         { headers: { 'x-auth-token': localStorage.getItem('token') } }
       )
-      debugger
+
       let conversation = res.data
-      console.log(' conversation: ', conversation);
-      debugger
+      // console.log(' conversation: ', conversation);
       this.setState({ conversation }, () => {
-        debugger
+
         this.getMessageList()
       })
     } catch (err) {
@@ -234,39 +259,113 @@ class RouterContainer extends Component {
     }
   }
 
-  async getMessageList() {
+  async getMessageList(fromSocket) {
     const { conversation } = this.state
     // let userFromToken = helpers.getUserFromToken()
-    debugger
-    try {
-      const res = await axios.get(`${config.BASE_URL}/messages`, {
-        params: {
-          conversationId: conversation._id,
-        }
-      })
 
-      const messageList = res.data
-      console.log('messageList is', messageList);
-      // format the message to be in the chat fotmat
-      const formattedmMessageList = messageList.map((data) => {
-        const { message } = data
+    console.log('conversation._id^^^^^^^^^^^^^^^^^', conversation._id)
+    if (socket !== undefined) {
+      console.log('Connected to socket');
+      debugger
+      try {
+        socket.emit('join room', conversation._id)
+        if (fromSocket) {
+          debugger
+          socket.on('getMessagesAndConversationId', (data) => {
 
-        return {
-          author: message.author,
-          type: message.type,
-          data: { [message.type]: message.data[message.type] }
+            console.log('data%%%%%%%%%', data);
+            const { conversationId, messages } = data
+            console.log('*********messages from socket length is*********', messages.length);
+            const messageList = messages //socket
+
+            console.log('conversation._id&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', conversation._id);
+            console.log('conversationId&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', conversationId);
+
+            const formattedmMessageList = messageList.map((data) => {
+              const { message } = data
+
+              return {
+                author: message.author,
+                type: message.type,
+                data: { [message.type]: message.data[message.type] }
+              }
+            })
+
+            if (!conversation) {
+              this.setState({ messageList: [] })
+            } else {
+              this.setState({ messageList: formattedmMessageList })
+            }
+
+          })
+        } else {
+          debugger
+          const res = await axios.get(`${config.BASE_URL}/messages`, {
+            params: {
+              conversationId: conversation._id,
+            }
+          })
+          // 
+          const messageList = res.data
+          // console.log('messageList is', messageList);
+          // format the message to be in the chat fotmat
+          const formattedmMessageList = messageList.map((data) => {
+            const { message } = data
+
+            return {
+              author: message.author,
+              type: message.type,
+              data: { [message.type]: message.data[message.type] }
+            }
+          })
+
+          if (!conversation) {
+            this.setState({ messageList: [] })
+          } else {
+            this.setState({ messageList: formattedmMessageList })
+          }
         }
-      })
-      if (!conversation) {
-        this.setState({ messageList: [] })
-      } else {
-        this.setState({ messageList: formattedmMessageList })
+
+
       }
-    }
-    catch (err) {
+      catch (err) {
 
-      console.log(err);
+        console.log(err);
+      }
+      // })
+      socket.on('status', (data) => {
+        console.log('*********status*********', data);
+      })
     }
+    // try {
+    //   const res = await axios.get(`${config.BASE_URL}/messages`, {
+    //     params: {
+    //       conversationId: conversation._id,
+    //     }
+    //   })
+
+    //   const messageList = res.data
+    //   console.log('messageList is', messageList);
+    //   // format the message to be in the chat fotmat
+    //   const formattedmMessageList = messageList.map((data) => {
+    //     const { message } = data
+
+    //     return {
+    //       author: message.author,
+    //       type: message.type,
+    //       data: { [message.type]: message.data[message.type] }
+    //     }
+    //   })
+    //   if (!conversation) {
+    //     this.setState({ messageList: [] })
+    //   } else {
+    //     this.setState({ messageList: formattedmMessageList })
+    //   }
+    // }
+    // catch (err) {
+
+    //   console.log(err);
+    // }
   }
 
 
@@ -440,6 +539,11 @@ class RouterContainer extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.conversation._id !== this.state.conversation._id)
+      socket.emit('leaveRoom', prevState.conversation._id);
+  }
+
   renderChatName() {
     const { conversation, tremp } = this.state
     let userFromToken = helpers.getUserFromToken()
@@ -461,6 +565,7 @@ class RouterContainer extends Component {
       return tremp.user.name
     }
   }
+
   renderChat() {
     return <Chat isOpen={true}
       messageList={this.state.messageList}
