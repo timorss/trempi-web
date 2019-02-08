@@ -25,7 +25,7 @@ export default class Tremps extends Component {
     let { get } = this.props
     let headers = { 'x-auth-token': localStorage.getItem('token') }
     let user = helpers.getUserFromToken()
-    axios.delete(`${config.BASE_URL}/tremps/${id}`,
+    axios.delete(`${config.BASE_URL}/api/tremps/${id}`,
       { headers, user: user._id }
     )
       .then((res) => {

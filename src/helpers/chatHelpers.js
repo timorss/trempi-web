@@ -4,7 +4,7 @@ import config from '../config'
 const getMessageList = async (conversationId) => {
   // let userFromToken = helpers.getUserFromToken()
   try {
-    const res = await axios.get(`${config.BASE_URL}/messages`, {
+    const res = await axios.get(`${config.BASE_URL}/api/messages`, {
       params: {
         conversationId,
       }

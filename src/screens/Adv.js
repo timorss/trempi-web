@@ -8,7 +8,7 @@ import moment from 'moment';
 import Modal from '../components/Modal';
 require('moment/locale/he');
 export default class RouterContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       source: '',
@@ -18,7 +18,7 @@ export default class RouterContainer extends Component {
       price: '0',
       seats: '',
       details: '',
-      show:false
+      show: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeDateOrTime = this.handleChangeDateOrTime.bind(this);
@@ -44,9 +44,9 @@ export default class RouterContainer extends Component {
         break;
     }
   }
-exitModal(){
-  this.setState({ show: false });
-}
+  exitModal() {
+    this.setState({ show: false });
+  }
 
   handleChange(event, name) {
     switch (name) {
@@ -94,8 +94,8 @@ exitModal(){
     event.preventDefault();
     console.log('function works!');
     let userFromToken = this.getUserFromToken()
-    const { name, source, destination, date,time, price, seats, phoneNumber, details, } = this.state
-    axios.post(`${config.BASE_URL}/tremps`, {
+    const { name, source, destination, date, time, price, seats, phoneNumber, details, } = this.state
+    axios.post(`${config.BASE_URL}/api/tremps`, {
       name,
       source,
       destination,
@@ -107,11 +107,11 @@ exitModal(){
       phoneNumber,
       details
     },
-    { headers: { 'x-auth-token': localStorage.getItem('token') } }
+      { headers: { 'x-auth-token': localStorage.getItem('token') } }
     )
-    .then((res) => {
-      console.log('tremp is: ', res);
-      this.setState({ show: true })
+      .then((res) => {
+        console.log('tremp is: ', res);
+        this.setState({ show: true })
       })
       .catch(function (err) {
         console.log(err.response);
@@ -641,19 +641,19 @@ exitModal(){
         <label style={{ textDecoration: 'underline' }}> הערות:</label>
         <br />
         <textarea id="advTextarea"
-         placeholder="תחנות סופיות או תחנות שאתם עוברים בדרך וכו' וכו'"
-         maxLength={35} 
-         onChange={(event) => this.handleChange(event, 'textArea')}>
-         </textarea>
+          placeholder="תחנות סופיות או תחנות שאתם עוברים בדרך וכו' וכו'"
+          maxLength={35}
+          onChange={(event) => this.handleChange(event, 'textArea')}>
+        </textarea>
       </div>
 
       <div id="button-div-adv">
         {/* <input type="submit" id="button-adv-itself" value={'פרסם טרמפ!'} /> */}
       </div>
       <Modal
-      show={this.state.show}
-      handleHide={()=>this.exitModal()}
-      advTremp={this.handleSubmit}
+        show={this.state.show}
+        handleHide={() => this.exitModal()}
+        advTremp={this.handleSubmit}
       />
     </form>
     )

@@ -5,7 +5,7 @@ import config from '../config';
 import moment from 'moment';
 import SearchForm from '../components/SearchForm';
 export default class RouterContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       tremps: [],
@@ -24,7 +24,7 @@ export default class RouterContainer extends Component {
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
     const { source, destination } = this.state
-    axios.get(`${config.BASE_URL}/tremps`, {
+    axios.get(`${config.BASE_URL}/api/tremps`, {
       params: {
         source,
         destination
@@ -32,7 +32,7 @@ export default class RouterContainer extends Component {
     })
       .then((res) => {
         const tremps = res.data
-        console.log('tremps are', tremps);
+        console.log(`you have ${tremps.length} tremps`);
         this.setState({ tremps })
       })
       .catch(function (err) {
@@ -40,9 +40,10 @@ export default class RouterContainer extends Component {
       })
   }
 
+
   getTremps() {
     const { source, destination, date } = this.state
-    axios.get(`${config.BASE_URL}/tremps`, {
+    axios.get(`${config.BASE_URL}/api/tremps`, {
       params: {
         source,
         destination,

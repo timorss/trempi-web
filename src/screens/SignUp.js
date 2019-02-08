@@ -39,7 +39,7 @@ class SignUp extends Component {
   }
 
   getUsers() {
-    axios.get(`${config.BASE_URL}/users`)
+    axios.get(`${config.BASE_URL}/api/users`)
       .then((res) => {
         const users = res.data
         console.log('users are: ', users);

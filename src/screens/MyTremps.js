@@ -5,7 +5,7 @@ import Tremps from '../components/Tremps';
 import helpers from '../helpers';
 
 export default class MyTremps extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       tremps: []
@@ -22,7 +22,7 @@ export default class MyTremps extends Component {
     let userFromToken = helpers.getUserFromToken()
     console.log('process.env.NODE_ENV', process.env.NODE_ENV)
     console.log('config.BASE_URL', config.BASE_URL)
-    axios.get(`${config.BASE_URL}/tremps/${userFromToken._id}`)
+    axios.get(`${config.BASE_URL}/api/tremps/${userFromToken._id}`)
       .then((res) => {
         const tremps = res.data
         console.log('tremps are', tremps);
